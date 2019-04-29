@@ -1,0 +1,54 @@
+{
+  "id": "{{user}}.{{confName}}.execution",
+  "name": "Execution system for {{user}}",
+  "status": "UP",
+  "type": "EXECUTION",
+  "description": "Execution system for {{user}} ",
+  "site": "www.tacc.utexas.edu",
+  "executionType": "HPC",
+  "scratchDir": "/home1/05747/{{user}}/scratch",
+  "workDir": "/home1/05747{{user}}/work",
+  "login": {
+    "host": "login1.stampede2.tacc.utexas.edu",
+    "port": 22,
+    "protocol": "SSH",
+    "scratchDir": "/home1/05747/{{user}}/scratch",
+    "workDir": "/home1/05747/{{user}}/work",
+    "auth": {
+      "username": "{{user}}",
+      "password": "{{password}}",
+      "type": "PASSWORD"
+    }
+  },
+  "storage": {
+    "host": "login1.stampede2.tacc.utexas.edu",
+    "port": 22,
+    "protocol": "SFTP",
+    "rootDir": "/",
+    "homeDir": "/home1/05747/{{user}}",
+    "auth": {
+     "username": "{{user}}",
+      "password": "{{password}}",
+      "type": "PASSWORD"
+    }
+  },
+  "maxSystemJobs": 100,
+  "maxSystemJobsPerUser": 10,
+  "scheduler": "SLURM",
+  "queues": [
+    {
+      "name": "normal",
+      "maxJobs": 100,
+      "maxUserJobs": 10,
+      "maxNodes": 128,
+      "maxMemoryPerNode": "2GB",
+      "maxProcessorsPerNode": 128,
+      "customDirectives":"-A {{allocation}}",
+      "maxRequestedTime": "24:00:00",
+      "default": true
+    }
+  ],
+  "environment": "",
+  "startupScript": null
+}
+
