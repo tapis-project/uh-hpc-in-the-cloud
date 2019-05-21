@@ -1,3 +1,12 @@
+## NOTES/TODO
+- Should we use jupyter as a docker example? 
+- or will jupyter just be run locally? (not in docker)
+- make a docker image that is a jupyter notebook (that has docker cli installed, sing, etc)
+    - running jupyter as a docker image on their own vm, can mount to that container 
+    - then they could do everything from terminal in notebook 
+- create a class client for all test accounts
+
+
 # Intro to Docker
 
 slides: https://docs.google.com/presentation/d/1XQCNFcAu80QRliOa8DdwgcBNQdiKcV7tiRMcw_fEJKo/pub?start=false&loop=false&delayms=3000&slide=id.p
