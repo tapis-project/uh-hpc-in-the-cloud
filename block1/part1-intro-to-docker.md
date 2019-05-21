@@ -2,6 +2,8 @@
 
 slides: https://docs.google.com/presentation/d/1XQCNFcAu80QRliOa8DdwgcBNQdiKcV7tiRMcw_fEJKo/pub?start=false&loop=false&delayms=3000&slide=id.p
 
+*TODO: Do we still want these slides? or put all relevant info in md?*
+
 ### Pulling Images
 Authentication is the process of proving to a third-party (in our case, an API) you are who you say you are. At the DMV, this amounts to producing your driver's license. There are multiple ways of authenticating to APIs. We'll look at two of them.
 
@@ -13,7 +15,6 @@ We can use the `FROM` instruction to start our new image from a known image. Thi
 
 ```
 FROM ubuntu:16.04 
-
 ```
 
 #### The RUN instruction
@@ -35,6 +36,8 @@ ADD test.txt /root/text.txt
 
 A complete Dockerfile for the class Anaconda/Jupyter Notebook server is availble in the class repository:
 https://github.com/TACC/CSC2017Institute/blob/master/docker/Dockerfile
+
+*TODO: This will need to be changed*
 
 #### Building the Image
 To build an image from a docker file we use the `docker build` command. We use the `-t` flag to tag the image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the current working directory using a dot (.) character:
@@ -79,5 +82,5 @@ We need to map the 8887 port so that Jupyter is available from outside the VM. W
 docker run -d -it -p 8887:8887 -v $(pwd):/data tacc/csc_jupyter
 ```
 
-
+*TODO: Will we be using the same jupyter image? or will we create a new one?*
 
