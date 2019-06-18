@@ -20,6 +20,42 @@
 
 # Intro to Docker
 
+### What is a Container?
+
+* Isolated Userland processes
+* Virtualize: Network, I/O, CPU, and memory
+* Rooted file system means all application assets contained within container; promotes:
+  * Portability
+  * Reproducibility
+  * Ease of installation
+
+![alt text](images/linux_containers_intro.png "Linux Containers")
+
+![alt text](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/images/linux_containers_intro.png "Linux Containers")
+
+
+### Containers vs VMs
+* Containers
+  * OS process level isolation
+  * Can run 1,000s of containers on a single machine
+  * Leverages kernel features (requirements on kernel version)
+  * Start up time ~100ms
+  
+* VMs
+  * OS level isolation with virtualized hardware
+  * Can run dozens of VMs on a single machine
+  * Leverages hypervisors (requirements on physical hardware)
+  * Start up time ~minutes
+
+### The Docker Platform
+Docker is a platform (among serveral) for building and executing containers.
+
+* Images - Container “templates”. Essentially root filesystems with a little metadata (exposed ports, volumes, etc.)
+* Container runtime - Create containers from images and run commands in them. 
+* Docker Hub - Central, public repository of images.
+* Additional Tooling: 
+    * Additional client APIs - run commands in containers, get resources consumed, view logs, 
+    * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
 ### Initial setup
 Typically, accessing the docker daemon requires root to be in the docker group. For the purposes of this introduction,
@@ -76,21 +112,21 @@ image.
 The full name of an image on the Docker Hub is comprised of components separated by slashes. The components include a
 "repository" (which could be owned by an individual or organization), the "name", and the "tag". For example, an image
 with the full name
-TODO: change this example? 
+
 ```
-jstubbs/csc2018_test:0.1
+tacc/pearc19:0.1
 ```
-would be in the "jstubbs" repository and have a tag of "0.1". TACC maintains multiple repositories on the Docker Hub
+would refer to the `pearc19` image within the "tacc" repository and have a tag of "0.1". TACC maintains multiple repositories on the Docker Hub
 including:
 ```
 tacc
 taccsciapps
-agaveapi
+tapis
 abaco
 ```
 Official images such as the python official image are not owned by a repository, but all other images are.
 
-To pull an image off Docker Hub use the `docker pull` command
+To pull an image off Docker Hub use the `docker pull` command and provide the full image name:
 
 ```
 $ docker pull python
@@ -105,7 +141,7 @@ available on your local machine using the `docker images` command:
 ```
 $ docker images
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
-jstubbs/csc2018_test   latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
+tacc/pearc19:0.1       latest              9dfe5a2c4b43        52 minutes ago      81.2 MB
 python                 latest              a5b7afcfdcc8        3 hours ago         912 MB
 ```
 
@@ -139,13 +175,27 @@ We can also add local files to our image using the `ADD` instruction. We can add
 ADD test.txt /root/text.txt
 ```
 
-A complete Dockerfile for the class Anaconda/Jupyter Notebook server is available in the class repository:
-https://github.com/TACC/CSC2018Institute/blob/master/docker/Dockerfile
+#### Building a Pre-trained Image Classifier Docker Image
+In this workshop we will be working with an pre-trained image classifier based on Tensoflow. Our first step will be to 
+build a Docker image containing the image classifier software.
 
-#### Building the Image
-To build an image from a docker file we use the `docker build` command. We use the `-t` flag to tag the image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the current working directory using a dot (.) character:
+We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
+show how one would package that into a Docker image for computational portability and reproducibility. 
+
+##### Step 1. Add the python script
+
+##### Step 2. Add the ENTRYPOINT
+
+A complete Dockerfile for the classifier image is available in the workshop repository:
+https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
+
+##### Step 3. Build the image
+
+In general, to build an image from a dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
+image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
+current working directory using a dot (.) character:
 ```
-docker build -t csc_test .
+docker build -t <username>/classify_image .
 ```
 
 ### Running a Docker Container
