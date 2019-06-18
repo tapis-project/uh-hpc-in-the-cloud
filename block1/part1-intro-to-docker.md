@@ -1,23 +1,3 @@
-## NOTES/TODO
-- Should we use jupyter as a docker example? 
-- create a class client for all test accounts
-- 
-
-- Add intro to jupyter (before docker)
-- ssh to vm, start jupyter
-- log in to notebook - (test this)
-- show jupyter ennvironment 
-
-- then introduce docker
-- introduce the same stuff but replace with classifier image
-- build classifier image
-
-- intro to abaco
-- agavepy or curl? both?  
-
-- 
-
-
 # Intro to Docker
 
 ### What is a Container?
@@ -30,8 +10,6 @@
   * Ease of installation
 
 ![alt text](images/linux_containers_intro.png "Linux Containers")
-
-![alt text](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/images/linux_containers_intro.png "Linux Containers")
 
 
 ### Containers vs VMs
