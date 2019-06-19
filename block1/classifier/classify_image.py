@@ -39,6 +39,7 @@ import tarfile
 import numpy as np
 from six.moves import urllib
 import tensorflow as tf
+import requests
 
 FLAGS = None
 
@@ -179,8 +180,14 @@ def maybe_download_and_extract():
 
 def main(_):
   maybe_download_and_extract()
-  image = (FLAGS.image_file if FLAGS.image_file else
-           os.path.join(FLAGS.model_dir, 'cropped_panda.jpg'))
+  file_name = 'image.jpg'
+
+  with open(file_name, 'wb') as f:
+    f.write(requests.get(FLAGS.image_file).content)
+
+  image = file_name
+  # image = (FLAGS.image_file if FLAGS.image_file else
+  #          os.path.join(FLAGS.model_dir, 'cropped_panda.jpg'))
   run_inference_on_image(image)
 
 
