@@ -102,6 +102,21 @@ taccsciapps
 tapis
 abaco
 ```
+
+Let's check that our docker installation is set up correctly by pulling the `tacc/pearc19:0.1` and image
+and running a simple container from it:
+```
+# pull the image:
+docker pull tacc/pearc19:0.1
+
+# run a container:
+docker run tacc/pearc19:0.1
+
+```
+We'll cover the `docker run` statement in more detail momentarily, but for now just know that it
+should have started a single container from the `tacc/pearc19:0.1` image which printed a welcome
+message to standard out.
+
 Official images such as the python official image are not owned by a repository, but all other images are.
 
 To pull an image off Docker Hub use the `docker pull` command and provide the full image name:
@@ -153,31 +168,92 @@ We can also add local files to our image using the `ADD` instruction. We can add
 ADD test.txt /root/text.txt
 ```
 
+#### The ENTRYPOINT instruction
+The ENTRYPOINT instruction defines the executable that will be run within each container started from the image. Though
+it is possible to ignore the ENTRYPOINT and run a different executable when lauching a container, providing an ENTRYPOINT
+definition in the image is convenient.
+
+The value for ENTRYPOINT should be of the form:
+```
+["executable", "param1", "param2", ...]
+```
+
+For this example, we will use the `ls` program as our entrypoint.
+
+```
+ENTRYPOINT ["ls", "-l"]
+```
+
+Note: additional arguments can still be passed to the entrypoint when launching a container.
+
+
+
 #### Building a Pre-trained Image Classifier Docker Image
 In this workshop we will be working with an pre-trained image classifier based on Tensoflow. Our first step will be to 
 build a Docker image containing the image classifier software.
 
 We have a Python script that performs the work of actually calling Tensorflow and classifying image. Our goal is to 
-show how one would package that into a Docker image for computational portability and reproducibility. 
+show how one would package that into a Docker image for computational portability and reproducibility.
 
-##### Step 1. Add the python script
+Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
 
-##### Step 2. Add the ENTRYPOINT
+##### Step 1. Descend from the official Tensflow image
+For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
+everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`.
 
-A complete Dockerfile for the classifier image is available in the workshop repository:
+Add a line to your Dockerfile to start your image with this image as a base.
+
+##### Step 2. Install app requirements
+For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`. 
+If you aren't familiar with `pip`  just know that the package can be installed by running the following command in the shell
+```
+pip install requests
+```
+What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
+
+##### Step 3. Add the python script
+Our app uses a single python script, `classify_image.py`, located in the repository 
+(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). Let's add this
+Python script to our image.
+
+##### Step 4. Add the ENTRYPOINT
+
+We will launch our app using `python` which can be accomplished by executing:
+```
+python /path/to/classify_image.py
+```
+Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
+
+
+Note: A complete Dockerfile for the classifier image is available in the workshop repository:
 https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
 
-##### Step 3. Build the image
+##### Step 5. Build the image
 
-In general, to build an image from a dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
+In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
 image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
-current working directory using a dot (.) character:
+current working directory using a dot (.) character.
+
+If you have a docker hub account, you can tag your image using your docker hub username with something like:
 ```
 docker build -t <username>/classify_image .
 ```
+Otherwise, you don't need to specify the username, but you will not be able to push it to docker hub later.
 
 ### Running a Docker Container
 We use the `docker run` command to run containers from an image. We pass a command to run in the container.
+
+Let's run a container from our classifier Docker image to classify an image! All we need to do is pass it a URL 
+containing an image. For example, if we wanted to classify this URL 
+https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
+
+we could execute:
+
+```
+docker run <image> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
+```  
+
+Let's look at a few more things we can do with containers.
 
 #### Running and Attaching to a Container
 To run a container and attach to it in one command, use the `-it` flags. Here we run `bash` in a container from the ubuntu image:

@@ -1,6 +1,6 @@
 # Running Classifier Image in Abaco
 
-### Getting the Image Ready
+### Getting the Image Ready and Registering an Actor
 
 ### Executing Classifier with `curl`
 
