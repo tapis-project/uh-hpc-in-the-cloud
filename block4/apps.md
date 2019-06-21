@@ -1,4 +1,4 @@
-#Apps and Jobs
+#Tapis Apps 
 ---
 
 Once you have storage and execution systems registered with Tapis, you are ready to build and use apps.  
