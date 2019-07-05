@@ -50,5 +50,17 @@ Take note of the actor ID that is returned, since you will need it to send the a
 
 ### Executing Classifier with `curl`
 
+To execute our Actor with our image classifier, we will need to send our actor a raw string message:
+
+```
+$ curl -H "Authorization: Bearer $TOKEN" -d "message=https://path/to/an/image.jpg" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+```
+
+To see the results of the execution, we can check the logs:
+```
+$ curl -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+```
+
+
 ### Executing Classifier on Abaco using a Jupyter Notebook & TapisPy
 

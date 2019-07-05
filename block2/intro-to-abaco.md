@@ -84,6 +84,10 @@ $ curl -H "Authorization: Bearer $TOKEN" -d "message=some test message" https://
 
 When this request is successful, the abaco will put a single message on the actor's message queue which will ultimately result in one container execution with the `$MSG` environment variable having the value `some test message`.
 
+```
+$ curl -H "Authorization: Bearer $TOKEN" - https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
+```
+
 The same execution could be made using the tapispy Python library like so:
 
 ```
