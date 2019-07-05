@@ -1,3 +1,4 @@
+#
 # Copyright 2015 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -171,7 +172,10 @@ def maybe_download_and_extract():
       sys.stdout.write('\r>> Downloading %s %.1f%%' % (
           filename, float(count * block_size) / float(total_size) * 100.0))
       sys.stdout.flush()
-    filepath, _ = urllib.request.urlretrieve(DATA_URL, filepath, _progress)
+    filepath, _ = urllib.request.urlretrieve(DATA_URL, filepath)
+# uncomment to get progress output --
+#    filepath, _ = urllib.request.urlretrieve(DATA_URL, filepath, _progress)
+# ----
     print()
     statinfo = os.stat(filepath)
     print('Successfully downloaded', filename, statinfo.st_size, 'bytes.')
