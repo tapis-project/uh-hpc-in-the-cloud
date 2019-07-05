@@ -28,5 +28,10 @@
   * [Executing Actors with Raw Strings](./block2/intro-to-abaco.md#executing-actors-with-raw-strings)
   * [Executing Actors with JSON](./block2/intro-to-abaco.md#executing-actors-by-passing-json)
   * [Retrieving the Logs](./block2/intro-to-abaco.md#retrieving-the-logs)
-  
 
+* [Running the Image classifier with Abaco](./block2/running-image-classifier-in-abaco.md)
+  * [Preparing our Code for Abaco](./block2/running-image-classifier-in-abaco.md#preparing-our-code-for-abaco)
+  * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
+  * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
+  * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
+  

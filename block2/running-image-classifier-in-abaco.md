@@ -38,6 +38,16 @@ Notice that instead of our entrypoint being `classify_image.py` as it was before
 
 #### Creating an Abaco Actor
 
+Once our new dockerfile is built and pushed to DockerHub, we can create our Abaco actor. 
+```
+$ curl -H "Authorization: Bearer $TOKEN" \
+-H "Content-Type: application/json" \
+-d '{"image": "taccsciapps/abaco_classifier", "name": "abaco_classifier", "description": "Using the image classifier with abaco."}' \
+https://api.tacc.cloud/actors/v2
+```
+
+Take note of the actor ID that is returned, since you will need it to send the actor a message.
+
 ### Executing Classifier with `curl`
 
 ### Executing Classifier on Abaco using a Jupyter Notebook & TapisPy
