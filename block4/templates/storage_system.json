@@ -1,9 +1,9 @@
 {
-  "id": "{{user}}.{{confName}}.storage",
-  "name": "Storage system for {{user}}",
+  "id": "{user}.{confName}.storage",
+  "name": "Storage system for {user}",
   "status": "UP",
   "type": "STORAGE",
-  "description": "Storage system for {{user}}",
+  "description": "Storage system for {user}",
   "site": "www.tacc.utexas.edu",
   "public": false,
   "default": true,
@@ -12,10 +12,10 @@
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home/{{user}}/pearcsystems",
+    "homeDir": "/home/{user}/",
     "auth": {
-      "username": "{{user}}",
-      "password": "{{password}}",
+      "username": "{user}",
+      "password": "{password}",
       "type": "PASSWORD"
     }
   }

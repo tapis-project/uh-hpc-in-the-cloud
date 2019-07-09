@@ -1,22 +1,22 @@
 {
-  "id": "{{user}}.{{confName}}.execution",
-  "name": "Execution system for {{user}}",
+  "id": "{user}.{confName}.execution",
+  "name": "Execution system for {user}",
   "status": "UP",
   "type": "EXECUTION",
-  "description": "Execution system for {{user}} ",
+  "description": "Tapis Execution system for {user} ",
   "site": "www.tacc.utexas.edu",
   "executionType": "HPC",
-  "scratchDir": "/home1/05747/{{user}}/scratch",
-  "workDir": "/home1/05747{{user}}/work",
+  "scratchDir": "/home1/0003/{user}/scratch",
+  "workDir": "/home1/0003/{user}/work",
   "login": {
     "host": "login1.stampede2.tacc.utexas.edu",
     "port": 22,
     "protocol": "SSH",
-    "scratchDir": "/home1/05747/{{user}}/scratch",
-    "workDir": "/home1/05747/{{user}}/work",
+    "scratchDir": "/home1/0003/{user}/scratch",
+    "workDir": "/home1/0003/{user}/work",
     "auth": {
-      "username": "{{user}}",
-      "password": "{{password}}",
+      "username": "{user}",
+      "password": "{password}",
       "type": "PASSWORD"
     }
   },
@@ -25,10 +25,10 @@
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home1/05747/{{user}}",
+    "homeDir": "/home1/0003/{user}",
     "auth": {
-     "username": "{{user}}",
-      "password": "{{password}}",
+     "username": "{user}",
+      "password": "{password}",
       "type": "PASSWORD"
     }
   },
@@ -43,7 +43,7 @@
       "maxNodes": 128,
       "maxMemoryPerNode": "2GB",
       "maxProcessorsPerNode": 128,
-      "customDirectives":"-A {{allocation}}",
+      "customDirectives":"-A {allocation}",
       "maxRequestedTime": "24:00:00",
       "default": true
     }
