@@ -25,3 +25,4 @@ Once you open a notebook, you can write and run python code. To execute a line o
 
 ### Starting a Terminal
 
+To open a terminal for writing CLI commands, click 'New' in the upper right corner. After selecting 'Terminal', a linux terminal will open. 
