@@ -1,19 +1,25 @@
-#Tapis Apps 
+#Intro to Tapis Apps 
 ---
+Once you have storage and execution systems registered with Tapis, you are ready to build and use apps. 
 
-Once you have storage and execution systems registered with Tapis, you are ready to build and use apps.  
-A Tapis App is versioned, containerized executable that runs on a specific execution system.  So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, for a software package available on multiple execution systems, each system would use a different Tapis app to use that software.
-
-Tapis keeps a registry of apps that you can list and search.  The Apps service provides permissions, validation, archiving, and revision information about each app in addition to the usual discovery capability.
-
-## Registering an app  
-
-Registering an app with the Apps service is conceptually simple. Just describe your app as a JSON document and POST it to the Apps service. 
+### What is a Tapis app? 
+A Tapis App is versioned, containerized executable that runs on a specific execution system through Tapis' Job service.  
+So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single code needs to be run on multiple systems, each combination of app and system needs to be defined as an individual app.
 
 
-## Packaging your app  
+### What does Tapis Apps service provide?
+Apps service is a central registry for all Tapis apps. With Apps service you can:  
+* list or search 
+* register 
+* manage or share 
+* revise 
+* view information about each app as version number, owner, revision number in addition to the usual discovery capability
+ 
+The rest of this tutorial explains in detail about how to package your app, register an app to the Apps service and how to manage and share apps. 
 
-Tapis apps are bundled into a directory and organized in a way that Tapis can properly invoke it. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
+
+### App Packaging 
+Tapis apps are bundled into a directory and organized in a way that Tapis jobs can properly invoke it. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
 
 * An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. More on this in the next section.
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
@@ -22,7 +28,7 @@ Tapis apps are bundled into a directory and organized in a way that Tapis can pr
 The resulting minimal app bundle would look something like the following:
 
 ```always
-jfonner-ggplot-1.0
+package-name-version
 |- app.json
 |+ bin
  |- script.R
@@ -30,6 +36,24 @@ jfonner-ggplot-1.0
  |- test.sh
 |- wrapper.sh
 ```
+
+package-name-version is a folder that you create on your Tapis cloud storage system in a designated location, we prefer (/home/{user}/applications/). We refer to this location as a deployment path in our app definition (more on this in Registering app section).  This folder contains binaries, support scripts, test data, etc. all in one package.
+
+
+### Important Keywords for apps
+* **name** - Apps are given an ID by combining the "name" and "version". That combination must be unique across the entire Tapis tenant, so unless you are an admin creating public system, you should probably put your username somewhere in there, and it's often useful to have the system name somehow referenced there too. You shouldn't use spaces in the name.
+* **version** - This should be the version of the software package that you are wrapping.  If you end up updating your app description later on, Tapis will keep track of the app revision separately, so there is no need to reflect that here.
+* **deploymentSystem** - The data storage system where you keep the app assets, such as the wrapper script, test script, etc.  App assets are not stored on the execution system where they run.  For provenance and reproducibility, Tapis requires that you keep them on a cloud storage system.
+* **deploymentPath** - the directory on the deploymentSystem where the app bundle is located
+* **templatePath** - This template is what Tapis uses to run your app.  The path you specify here is relative to the deploymentPath
+* **testPath** - The intention here is that you include a testcase inside of your app bundle.
+* **argument** - In combination with "showArgument", the "argument" keyword is a convenience that lets you build up commandline arguments in your wrapper script.
+* **Cardinality** - Sets the min and max number of files you can give for inputs and outputs.  A "maxCardinality" of -1 will accept an unlimited number of files.
+
+### Registering an app  
+
+Registering an app with the Apps service is conceptually simple. Just describe your app as a JSON document and POST it to the Apps service. 
+
 
 ## An example app
 
@@ -144,15 +168,7 @@ Below is an app description that takes a single file and one parameter as input 
 }
 ```
 
-Looking at some of the important keywords:
-* **name** - Apps are given an ID by combining the "name" and "version". That combination must be unique across the entire Agave tenant, so unless you are an admin creating public system, you should probably put your username somewhere in there, and it's often useful to have the system name somehow referenced there too. You shouldn't use spaces in the name.
-* **version** - This should be the version of the software package that you are wrapping.  If you end up updating your app description later on, Agave will keep track of the app revision separately, so there is no need to reflect that here.
-* **deploymentSystem** - The data storage system where you keep the app assets, such as the wrapper script, test script, etc.  App assets are not stored on the execution system where they run.  For provenance and reproducibility, Agave requires that you keep them on a storage system.
-* **deploymentPath** - the directory on the deploymentSystem where the app bundle is located
-* **templatePath** - This template is what Agave uses to run your app.  The path you specify here is relative to the deploymentPath
-* **testPath** - The intention here is that you include a testcase inside of your app bundle.
-* **argument** - In combination with "showArgument", the "argument" keyword is a convenience that lets you build up commandline arguments in your wrapper script.
-* **Cardinality** - Sets the min and max number of files you can give for inputs and outputs.  A "maxCardinality" of -1 will accept an unlimited number of files.
+
 
 ## Registering an app
 
