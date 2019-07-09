@@ -1,4 +1,4 @@
-
+{
   "name":"{user}.{confName}.app.classify",
   "appId":"{appId}",
   "archive":true,

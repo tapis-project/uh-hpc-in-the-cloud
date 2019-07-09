@@ -9,12 +9,12 @@
     "ImageNet"
   ],
   "deploymentSystem": "{user}.{confName}.storage",
-  "deploymentPath": "/home/{user}/classifyApp/",
+  "deploymentPath": "/home/{user}/applications/classifyApp-1.0/",
   "templatePath": "wrapper.sh",
   "testPath": "test/test.sh",
   "executionSystem": "{user}.{confName}.execution",
   "executionType": "HPC",
-  "helpURI": "https://uh-ci.github.io/agave-container-workshop-20180806/",
+  "helpURI": "https://github.com/tapis-project/hpc-in-the-cloud/",
   "parallelism": "SERIAL",
   "modules": ["load tacc-singularity/2.6.0"],
   "inputs": [{
