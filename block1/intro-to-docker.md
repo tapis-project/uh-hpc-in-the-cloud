@@ -41,7 +41,7 @@ Typically, accessing the docker daemon requires root to be in the docker group. 
 ```
 $ sudo su - root
 ```
-TODO - check version
+
 
 Make sure you can access the docker daemon; you can verify this by checking the version:
 ```

@@ -1,0 +1,64 @@
+{
+  "name": "train300.pearc19.app.classify",
+  "version": "1.0",
+  "label": "Image Classifier",
+  "shortDescription": "Classify an image using a small ImageNet model",
+  "longDescription": "",
+  "tags": [
+    "tensorflow",
+    "ImageNet"
+  ],
+  "deploymentSystem": "train300.PEARC19.storage.test",
+  "deploymentPath": "/home/train300/classifyApp/",
+  "templatePath": "wrapper.sh",
+  "testPath": "test/test.sh",
+  "executionSystem": "train300.PEARC19.execution.test",
+  "executionType": "HPC",
+  "helpURI": "https://uh-ci.github.io/agave-container-workshop-20180806/",
+  "parallelism": "SERIAL",
+  "modules": ["load tacc-singularity/2.6.0"],
+  "inputs": [{
+    "id": "imagefile",
+    "details": {
+      "label": "Image to classify",
+      "description": "",
+      "argument": "--image_file ",
+      "showArgument": true
+    },
+    "semantics": {
+      "minCardinality": 1,
+      "ontology": [
+        "http://edamontology.org/format_3547"
+      ],
+      "maxCardinality": 1
+    },
+    "value": {
+      "default": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
+      "order": 0,
+      "required": true,
+      "validator": "",
+      "visible": true
+    }
+  }],
+  "parameters": [{
+    "id": "predictions",
+    "details": {
+      "label": "Number of predictions to return",
+      "argument": "--num_top_predictions ",
+      "showArgument": true
+    },
+    "semantics": {
+      "maxCardinality": 1,
+      "ontology": [],
+      "minCardinality": 1
+    },
+    "value": {
+      "visible": true,
+      "required": true,
+      "type": "number",
+      "default": 5
+    }
+  }],
+  "outputs": [],
+  "checkpointable": false
+}
