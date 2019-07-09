@@ -44,7 +44,6 @@ Optional parameters:
 * stateless (True/False) - Whether the actor stores private state as part of its execution. If True, the state API will not be available. The default value is False.
 * privileged (True/False) - Whether the actor runs in privileged mode and has access to the Docker daemon. *Note: Setting this parameter to True requires elevated permissions.*
 
-## TODO: talk about aliases? 
 
 Here is an example using curl:
 
