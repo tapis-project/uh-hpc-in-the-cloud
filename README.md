@@ -44,5 +44,14 @@
   * [Application metadata](./block4/apps.md#application-metadata)
   * [Registering App](./block4/apps.md#registering-an-app)
   * [List Apps](./block4/apps.md#list-apps)
-  * [Apps Permissions](./block4/apps.md#apps-permissions)
-  
+  * [Managing App Permissions](./block4/apps.md#apps-permissions)
+
+* [Intro to Jobs](./block4/jobs.md)
+  * [What is a Tapis(Agave) job?](./block4/jobs.md#what-is-a-tapisagave-job)
+  * [Tapis Jobs Service](./block4/jobs.md#tapis-jobs-service)
+  * [Running Job ](./block4/jobs.md#running-job)
+  * [Jobs Metadata]((./block4/jobs.md#jobs-metadata)
+  * [Jobs List](./block4/jobs.md#jobs-list)
+  * [Jobs Status](./block4/jobs.md#jobs-status)
+  * [Jobs Output](./block4/jobs.md#jobs-output)
+  * [Jobs Notifications](./block4/apps.md#jobs-notifications)

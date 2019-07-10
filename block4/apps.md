@@ -160,7 +160,7 @@ apps-list -V {app_ID}
 
 ```
 
-### Apps Permissions
+### Managing App Permissions
 
 To view the permissions on the app for different users 
 
