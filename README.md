@@ -35,3 +35,9 @@
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
   
+
+## Block 4: Intro to Tapis(Agave) Apps & Jobs
+* [Intro to Apps](./block4/apps.md)
+  * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
+  * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
+  

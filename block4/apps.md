@@ -3,11 +3,11 @@
 
 ### What is a Tapis(Agave) app? 
 A Tapis(Agave) App is versioned, containerized executable that runs on a specific execution system through Tapis(Agave) Jobs service.  
-So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single application code needs to be run on multiple systems, each combination of app and system needs to be defined as an individual app.
+So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single application code needs to be run on multiple systems, each combination of app and system needs to be defined as a separate app.
 Once you have storage and execution systems registered with Tapis(Agave), you are ready to build and use apps. 
 
 
-### What does Tapis(Agave) Apps service provide?
+### Tapis(Agave) Apps service
 Apps service is a central registry for all Tapis(Agave) apps. With Apps service you can:  
 * list or search apps
 * register new apps
@@ -15,7 +15,7 @@ Apps service is a central registry for all Tapis(Agave) apps. With Apps service 
 * revise existing apps
 * view information about each app such as its version number, owner, revision number in addition to the usual discovery capability
  
-The rest of this tutorial explains in detail about how to package your Tapis(Agave) app and register it with the Apps service. 
+The rest of this tutorial explains in detail about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful apps CLI commands. 
 
 
 ### App Packaging 
@@ -37,7 +37,7 @@ package-name-version
 |- wrapper.sh
 ```
 
-package-name-version is a folder that you create on your local system and transfer it to Tapis(Agave) cloud storage system in a designated location, we prefer (/home/{user}/applications/). We refer to this location as a deployment path in our app definition (more on this in the next section).  This folder contains binaries, support scripts, test data, etc. all in one package.
+package-name-version is a folder that you create on your local VM and transfer it to Tapis(Agave) cloud storage system in a designated location, we prefer creating a folder applications in the user's home directory (/home/{user}). We refer to this location as a deployment path in our app definition (more on this in the next section).  This folder contains binaries, support scripts, test data, etc. all in one package.
 
 
 ### Application metadata
@@ -57,18 +57,21 @@ Registering an app with the Apps service is conceptually simple. Just describe y
 
 
 
-### To register your very first app with Tapis(Agave) these are some of the prequisites
-* Storage and execution systems registered with Tapis(Agave), which you will use in defining your app 
-* With the training accounts credentials you should be able to ssh to cloud.corral.tacc.utexas.edu 
+### Lets first check:
+
+* Your Storage and execution systems that you registered with Tapis(Agave) can be listed 
+You can do a systems-list command from your VM to see your storage and execution systems are visible
+
+
+* With the training accounts credentials check if you can ssh to cloud.corral.tacc.utexas.edu 
  ```
  ssh trainXXX@cloud.corral.tacc.utexas.edu 
 
  ``` 
- In your /home/{user}/ you should see an 'applications' directory
+ In your /home/{user}/ you should see an empty 'applications/classifyApp-1.0' directory
+
 
 ### Step 1: Creating the app bundle locally 
- * Create a directory classifyApp-1.0 in your /home/{user}/applications directory on your local VM 
-
  * cd into classifyApp-1.0 directory and singularity pull the classifier docker image using the command below. 
 ```
 singularity pull docker://tacc/pearc19-classifier
@@ -86,15 +89,45 @@ singularity run pearc19-classifier.simg python /classify_image.py ${imagefile} $
 ```
 Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
 
+* Test data
+If you have a small set of test data, it can be useful to other developers if you include it in a `test` directory. Inside your classifyApp-1.0 directory make a directory called test and create a test script inside it.You can make sure your wrapper script runs fine using by running the test.sh on the local vm
+ 
+```
+cd ~/applications/classifyApp-1.0 && mkdir test && cd test && vi test.sh
+```
+
+Test script
+
+It is always a good idea to include a test script that can run your app against test data.  Paste the below bash script in your test.sh file
+
+```
+#!/bin/bash
+module load tacc-singularity/2.6.0
+
+export imagefile="--image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg"
+export predictions="--num_top_predictions 5"
+
+cd ../ && bash wrapper.sh
+```
 
 
-### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service
 
-files-cp pearc19-classifier.simg agave://cicsvc.pearc19.storage.system/applications/classifyApp-1.0/
+### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. You should run below commands from your local VM classifyApp-1.0 folder
+```
+file-mkdir agave://UPDATESTORAGESYSTEMID/applications/
 
-files-cp wrapper.sh agave://cicsvc.pearc19.storage.system/applications/classifyApp-1.0/
+file-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
+
+file-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test
+
+files-cp pearc19-classifier.simg agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
+
+files-cp wrapper.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
+
+files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test/test.sh
 
 
+```
 
 ### Step 3: Crafting your app definition 
 Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as making sure the storage and execution systems are yours and name contains your username, you should be able to register your very first Tapis(Agave) app.
@@ -103,7 +136,7 @@ You can store this app.json in your home directory on local VM.
 
 
 ### Step 4: Registering an app
-Once you have an application bundle ready to go, you can use use the following CLI command from your local VM home directory:
+Once you have an application bundle ready to go and app definition crafted, you can use use the following CLI command from your local VM home directory:
 ```
 apps-addupdate -F app.json
 ```
@@ -113,13 +146,13 @@ Tapis(Agave) will check the app description, look for the app bundle on the depl
 
 
 ### Step 5: List apps 
-Now if you list apps you should see the app you just registered in the apps list. You should also see other public apps available in the tacc.prod tenant
+Now if you list apps you should see the app you just registered. You should also see other public apps available in the tacc.prod tenant
 ```
 apps-list 
 
 ```
 
-To see more details about the app do
+To see details about a specific app 
 ```
 apps-list -V {app_ID}
 
@@ -137,5 +170,5 @@ To view the permissions on the app for different users
  apps-pems-update -u {uname} -p READ_WRITE  {app_id}
  ```
 
- Now that we have our very first app ready to use, we are ready to run the app on Stampede2 using Tapis Jobs service. 
+ Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis Jobs service. 
 
