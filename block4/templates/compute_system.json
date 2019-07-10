@@ -1,22 +1,22 @@
 {
-  "id": "{user}.{confName}.execution",
-  "name": "Execution system for {user}",
+  "id": "UPDATEUSERNAME.stampede2.execution",
+  "name": "Execution system for Stampede2",
   "status": "UP",
   "type": "EXECUTION",
-  "description": "Tapis Execution system for {user} ",
+  "description": "Execution system for Stampede2 ",
   "site": "www.tacc.utexas.edu",
   "executionType": "HPC",
-  "scratchDir": "/home1/0003/{user}/scratch",
-  "workDir": "/home1/0003/{user}/work",
+  "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
+  "workDir": "/home1/0003/UPDATEUSERNAME/work",
   "login": {
     "host": "login1.stampede2.tacc.utexas.edu",
     "port": 22,
     "protocol": "SSH",
-    "scratchDir": "/home1/0003/{user}/scratch",
-    "workDir": "/home1/0003/{user}/work",
+    "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
+    "workDir": "/home1/0003/UPDATEUSERNAME/work",
     "auth": {
-      "username": "{user}",
-      "password": "{password}",
+      "username": "UPDATEUSERNAME",
+      "password": "UPDATEPASSWORD",
       "type": "PASSWORD"
     }
   },
@@ -25,10 +25,10 @@
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home1/0003/{user}",
+    "homeDir": "/home1/0003/UPDATEUSERNAME",
     "auth": {
-     "username": "{user}",
-      "password": "{password}",
+     "username": "UPDATEUSERNAME",
+      "password": "UPDATEPASSWORD",
       "type": "PASSWORD"
     }
   },
@@ -43,7 +43,7 @@
       "maxNodes": 128,
       "maxMemoryPerNode": "2GB",
       "maxProcessorsPerNode": 128,
-      "customDirectives":"-A {allocation}",
+      "customDirectives":"-A UPDATEALLOCATION",
       "maxRequestedTime": "24:00:00",
       "default": true
     }
