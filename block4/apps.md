@@ -60,24 +60,26 @@ Registering an app with the Apps service is conceptually simple. Just describe y
 ### Lets first check:
 
 * Your Storage and execution systems that you registered with Tapis(Agave) can be listed 
-You can do a systems-list command from your VM to see your storage and execution systems are visible
-
-
-* With the training accounts credentials check if you can ssh to cloud.corral.tacc.utexas.edu 
- ```
- ssh trainXXX@cloud.corral.tacc.utexas.edu 
-
- ``` 
- In your /home/{user}/ you should see an empty 'applications/classifyApp-1.0' directory
+```
+systems-list
+```
 
 
 ### Step 1: Creating the app bundle locally 
- * cd into classifyApp-1.0 directory and singularity pull the classifier docker image using the command below. 
+ *  From classifyApp-1.0 directory on your VM,  singularity pull the classifier docker image using the command below
+
 ```
+cd ~/applications/classifyApp-1.0
+
 singularity pull docker://tacc/pearc19-classifier
+
 ```
 
-* Create a wrapper script wrapper.sh inside classifyAp-1.0 directory
+*  Inside classifyAp-1.0 directory create a wrapper script "wrapper.sh"
+```
+touch wrapper.sh
+
+```
 We have set this up to have a minimal wrapper script:
 
 ```
@@ -93,7 +95,7 @@ Within a wrapper script, you can reference the ID of any Tapis(Agave) input or p
 If you have a small set of test data, it can be useful to other developers if you include it in a `test` directory. Inside your classifyApp-1.0 directory make a directory called test and create a test script inside it.You can make sure your wrapper script runs fine using by running the test.sh on the local vm
  
 ```
-cd ~/applications/classifyApp-1.0 && mkdir test && cd test && vi test.sh
+cd ~/applications/classifyApp-1.0 && mkdir test && cd test && touch test.sh
 ```
 
 Test script
@@ -132,11 +134,11 @@ files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
 ### Step 3: Crafting your app definition 
 Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as making sure the storage and execution systems are yours and name contains your username, you should be able to register your very first Tapis(Agave) app.
 
-You can store this app.json in your home directory on local VM. 
+Store this app.json in your home directory on local VM. 
 
 
 ### Step 4: Registering an app
-Once you have an application bundle ready to go and app definition crafted, you can use use the following CLI command from your local VM home directory:
+Once you have an application bundle ready to go and app definition crafted, you can use use the following CLI command from your home directory on VM
 ```
 apps-addupdate -F app.json
 ```
