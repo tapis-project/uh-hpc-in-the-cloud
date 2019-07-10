@@ -8,7 +8,7 @@
     "tensorflow",
     "ImageNet"
   ],
-  "deploymentSystem": "{user}.{confName}.storage",
+  "deploymentSystem": "UPDATEUSERNAME.tacc.corral.storage",
   "deploymentPath": "/home/{user}/applications/classifyApp-1.0/",
   "templatePath": "wrapper.sh",
   "testPath": "test/test.sh",
