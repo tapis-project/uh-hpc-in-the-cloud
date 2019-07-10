@@ -1,5 +1,5 @@
 {
-  "name": "{user}.{confName}.app.classify",
+  "name": "UPDATEUSERNAME.app.imageclassify",
   "version": "1.0",
   "label": "Image Classifier",
   "shortDescription": "Classify an image using a small ImageNet model",
@@ -9,15 +9,16 @@
     "ImageNet"
   ],
   "deploymentSystem": "UPDATEUSERNAME.tacc.corral.storage",
-  "deploymentPath": "/home/{user}/applications/classifyApp-1.0/",
+  "deploymentPath": "/home/UPDATEUSERNAME/applications/classifyApp-1.0/",
   "templatePath": "wrapper.sh",
   "testPath": "test/test.sh",
-  "executionSystem": "{user}.{confName}.execution",
+  "executionSystem": "UPDATEUSERNAME.stampede2.execution",
   "executionType": "HPC",
   "helpURI": "https://github.com/tapis-project/hpc-in-the-cloud/",
   "parallelism": "SERIAL",
   "modules": ["load tacc-singularity/2.6.0"],
-  "inputs": [{
+  "inputs": [],
+  "parameters": [{
     "id": "imagefile",
     "details": {
       "label": "Image to classify",
@@ -36,11 +37,11 @@
       "default": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
       "order": 0,
       "required": true,
-      "validator": "",
+      "type": "string",
       "visible": true
     }
-  }],
-  "parameters": [{
+  },
+    {
     "id": "predictions",
     "details": {
       "label": "Number of predictions to return",
