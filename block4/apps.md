@@ -145,7 +145,7 @@ apps-addupdate -F app.json
 Tapis(Agave) will check the app description, look for the app bundle on the deploymentSystem, and if everything passes, make it available to run jobs with Tapis Jobs service.
 
 
-### Step 5: List apps 
+### List apps 
 Now if you list apps you should see the app you just registered. You should also see other public apps available in the tacc.prod tenant
 ```
 apps-list 
@@ -158,7 +158,7 @@ apps-list -V {app_ID}
 
 ```
 
-### Step 6: Apps Permissions
+### Apps Permissions
 
 To view the permissions on the app for different users 
 

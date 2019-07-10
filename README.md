@@ -40,4 +40,9 @@
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
+  * [App Packaging](./block4/apps.md#app-packaging)
+  * [Application metadata](./block4/apps.md#application-metadata)
+  * [Registering App](./block4/apps.md#registering-an-app)
+  * [List Apps](./block4/apps.md#list-apps)
+  * [Apps Permissions](./block4/apps.md#apps-permissions)
   
