@@ -1,9 +1,9 @@
 {
-  "id": "{user}.{confName}.storage",
-  "name": "Storage system for {user}",
+  "id": "UPDATEUSERNAME.tacc.corral.storage",
+  "name": "Storage system for TACC cloud storage on corral",
   "status": "UP",
   "type": "STORAGE",
-  "description": "Storage system for {user}",
+  "description": "Storage system for TACC cloud storage on corral",
   "site": "www.tacc.utexas.edu",
   "public": false,
   "default": true,
@@ -12,10 +12,10 @@
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home/{user}/",
+    "homeDir": "/home/UPDATEUSERNAME/",
     "auth": {
-      "username": "{user}",
-      "password": "{password}",
+      "username": "UPDATEUSERNAME",
+      "password": "UPDATEPASSWORD",
       "type": "PASSWORD"
     }
   }
