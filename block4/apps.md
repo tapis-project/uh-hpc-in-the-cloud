@@ -158,6 +158,8 @@ apps-list -V {app_ID}
 
 ```
 
+### Step 6: Apps Permissions
+
 To view the permissions on the app for different users 
 
 ```
@@ -172,4 +174,4 @@ To view the permissions on the app for different users
 
  Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis Jobs service. 
 
-[NEXT](./block4/jobs.md)
+[NEXT-> JOBS](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/jobs.md)
