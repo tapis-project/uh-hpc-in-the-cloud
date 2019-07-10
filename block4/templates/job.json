@@ -1,7 +1,11 @@
 {
-  "name":"{user}.{confName}.app.classify",
+  "name":"UPDATEUSERNAME.app.imageclassify",
   "appId":"{appId}",
   "archive":true,
-  "memoryPerNode":"1"
+  "memoryPerNode":"1",
+  "parameters": { 
+    "imagefile": "https://texassports.com/images/2015/10/16/bevo_1000.jpg"
+    }
+  
   
 }
