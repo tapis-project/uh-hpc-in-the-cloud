@@ -114,17 +114,17 @@ cd ../ && bash wrapper.sh
 
 ### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. You should run below commands from your local VM classifyApp-1.0 folder
 ```
-file-mkdir agave://UPDATESTORAGESYSTEMID/applications/
+files-mkdir agave://UPDATESTORAGESYSTEMID/applications/
 
-file-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
+files-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
 
-file-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test
+files-mkdir agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test
 
 files-cp pearc19-classifier.simg agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
 
 files-cp wrapper.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/
 
-files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test/test.sh
+files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0/test/
 
 
 ```
