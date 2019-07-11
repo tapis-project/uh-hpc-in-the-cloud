@@ -1,6 +1,6 @@
 {
   "name":"UPDATEUSERNAME.app.imageclassify",
-  "appId":"{appId}",
+  "appId":"UPDATEAPPID",
   "archive":true,
   "archiveSystem":"UPDATESTORAGESYSTEM",
   "memoryPerNode":"1",
