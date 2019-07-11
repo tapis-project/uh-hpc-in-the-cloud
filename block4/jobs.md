@@ -84,7 +84,7 @@ Add this to your job definition and try to submit the job again
     }
     ]
 ```
-You should see email notifications as the job progress and changes state.
+You should see email notifications pop up in your inbox as the job changes state.
 
 ## What's next?
 
