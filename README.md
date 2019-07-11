@@ -48,9 +48,9 @@
 
 * [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
   * [Tapis(Aloe) Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
-  * [Jobs Parameters]((./block4/jobs.md#jobs-metadata)
+  * [Jobs Parameters](./block4/jobs.md#jobs-metadata)
   * [Submitting a Job ](./block4/jobs.md#submitting-a-job)
   * [Jobs List](./block4/jobs.md#jobs-list)
   * [Jobs Status](./block4/jobs.md#jobs-status)
   * [Jobs Output](./block4/jobs.md#jobs-output)
-  * [Jobs Notifications](./block4/apps.md#jobs-notifications)
+  * [Jobs Notifications](./block4/jobs.md#jobs-notifications)
