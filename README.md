@@ -34,7 +34,11 @@
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
-  
+## Block 3: Intro to Singularity and Tapis(Agave) CLI & Systems
+* [Intro to Singularity](./block3/intro-singularity.md)
+* [Intro to Tapis(Agave)](./block3/tapis-intro.md)
+* [Intro to Tapis CLI](./block3/tapis-cli.md)
+* [Intro to Tapis Systems](./block3/tapis-systems.md)
 
 ## Block 4: Intro to Tapis(Agave) Apps & Tapis(Aloe) Jobs
 * [Intro to Apps](./block4/apps.md)
