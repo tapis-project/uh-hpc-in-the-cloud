@@ -1,4 +1,4 @@
-#Intro to Tapis(Agave) Apps 
+# Intro to Tapis(Agave) Apps 
 ---
 
 ### What is a Tapis(Agave) app? 
@@ -19,7 +19,7 @@ The rest of this tutorial explains in detail about how to package your Tapis(Aga
 
 
 ### App Packaging 
-Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Agave) jobs can properly invoke it. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
+Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
 
 * An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. More on this in the next section.
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  

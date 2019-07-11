@@ -1,33 +1,90 @@
-# Intro to Tapis(Agave) Jobs
+# Intro to Tapis(Aloe) Jobs
 
-### What is a Tapis(Agave) Jobs? 
-
-### Tapis(Agave) Jos service
-
-### Jobs Metadata
+### Tapis(Aloe) Jobs service
+The Tapis(Aloe) Jobs service is a basic execution service that allows you to run applications registered with the Apps service across multiple, distributed, heterogeneous systems through a common REST interface.The service manages all aspects of execution and job management from data staging, job submission, monitoring, output archiving, event logging, sharing, and notifications. 
+The Agave jobs service is rearchitectured, to a new code-named Aloe, which provides improved reliability, scalability, performance and serviceability. More details on this new jobs service can be found in [Jobs Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/introduction.html)
 
 
-### Running Job
-Once you have at least one app registered, you can start running jobs.  To run a job, Tapis just needs to know what app you want to run and what inputs and parameters you want to use.  There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-submission.html)
+### Jobs Parameters 
+* **appId**	- The unique ID (name + version) of the application run by this job. This must be a valid application that the user has permission to run.
+* **name**	-  The user selected name for the job.
+* **archive**	-	Whether the job output should be archived. When true, all new file created during job execution will be moved to the archivePath.
+* **memoryPerNode**	-	The memory requested for each node on which the job runs. Values are expressed as [num][units], where num can be a decimal number and units can be KB, MB, GB, TB (default = GB). Examples include 200MB, 1.5GB and 5.
+* **archiveSystem**	-	The unique id of the storage system on which the job output will be archived.
+appId and name are required parameters. All the job parameters are given in [Job Parameters](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html)
 
 
+### Submitting a Job
+Once you have at least one app registered, you can start running jobs.  To run a job, Tapis just needs to know what app you want to run and what inputs and parameters you want to use. There are number of other optional features, which are explained in detail in the [Job Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/job-submission.html)
 Note that you can specify which queue to use as well as runtime limits in your job.  If those are absent, Tapis falls back to whatever was listed in the app description (also optional.If that app doesn't specify, then it falls back to the defaults given for the execution system.
-
 If you have direct access to the system where you are running the job, it is fun to watch it progress through on the system itself.  
 
+* Step 1: Crafting Job Definition
+Create [job.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/job.json) in your home directory on local VM and update the name and appID. To get the appID 
+
+```
+apps-list
+
+```
+Choose the image classifier app id that you registered earlier in this tutorial. In the job.json, you will see archive set as "True". With this setting all new files created during job execution will go to the archiveSystem's home directory. 
 
 
+* Step 2: Submit job
+From your home directory, where job.json file is located run job submission command
+```
+jobs-submit -F job.json
+```
+You should see a message "Successfully submitted job <jobID>. This is the job uuid, which is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
+
+Alternately, to get a detialed job response run with a -V option
+```
+jobs-submit -F job.json -V
+
+```
 
 ### Jobs List
+Now, when you do a jobs-list you can see your job
+```
+jobs-list
+
+```
 
 ### Jobs Status
+Job status allows you to see the current state of the job. You can also set up email or webhook notification, when the job state changes
+
+```
+job-status <jobId>
+
+```
+Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
+
 
 ### Jobs Output
+```
+jobs-output-list -L <jobId>
+
+```
+With this command you see the current files in the output folder. When archive is true, all the new files will get copied to archive directory on your archive system. When it is false all the output files can be found on the execution system's scratch directory
+
+You can also download, the output files using the command below
+```
+jobs-output-get <jobId>
+```
+
 
 ### Jobs Notifications
-
-
-
+You can monitor progress of your job by setting by email or webhook notifications
+Add this to your job definition and try to submit the job again
+```
+"notifications":[
+    {
+      "url":"UPDATEEMAILADDRESS",
+      "event":"*",
+      "persistent":true
+    }
+    ]
+```
+You should see email notifications as the job progress and changes state.
 
 ## What's next?
 

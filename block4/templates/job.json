@@ -2,6 +2,7 @@
   "name":"UPDATEUSERNAME.app.imageclassify",
   "appId":"{appId}",
   "archive":true,
+  "archiveSystem":"UPDATESTORAGESYSTEM",
   "memoryPerNode":"1",
   "parameters": { 
     "imagefile": "https://texassports.com/images/2015/10/16/bevo_1000.jpg"
