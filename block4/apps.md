@@ -115,7 +115,7 @@ cd ../ && bash wrapper.sh
 
 
 ### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. 
-You should run below commands from your local VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system
+You should run below commands from your local VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system.
 We are making folders on your cloud storage systems with the commands below
 
 ```
