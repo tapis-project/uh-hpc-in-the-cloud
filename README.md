@@ -4,12 +4,17 @@
 To clone this repo to your vm, use the following command:
 `git clone https://github.com/tapis-project/uh-hpc-in-the-cloud.git`
 
-## Block 1: Intro to Docker
+## Workshop Introduction
+Presenters here, overview
+
+## Intro to Jupter
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
   * [Starting a Jupyter Notebook](./block1/intro-to-jupyter.md#starting-up-your-jupyter-notebook-environment)
   * [Creating a Notebook](./block1/intro-to-jupyter.md#creating-a-notebook)
   * [Starting a Terminal](./block1/intro-to-jupyter.md#starting-a-terminal)
 
+
+## Intro to Docker
 * [Using Docker](./block1/intro-to-docker.md)
   * [What is a container?](./block1/intro-to-docker.md#what-is-a-container)
   * [Containers vs VMs](./block1/intro-to-docker.md#containers-vs-vms)
@@ -20,8 +25,12 @@ To clone this repo to your vm, use the following command:
   * [Running a Docker Container](./block1/intro-to-docker.md#running-a-docker-container)
   * [Removing Docker Containers](./block1/intro-to-docker.md#removing-docker-containers)
   
+## Intro to Tapis (Agave)
+* [Intro to Tapis(Agave)](./block3/tapis-intro.md)
 
-## Block 2: Using Abaco
+* [Intro to Tapis CLI](./block3/tapis-cli.md)
+
+## Using Abaco
 * [Intro to Abaco](./block2/intro-to-abaco.md)
   * [What is Abaco?](./block2/intro-to-abaco.md#what-is-abaco)
   * [Using Abaco](./block2/intro-to-abaco.md#using-abaco)
@@ -36,13 +45,13 @@ To clone this repo to your vm, use the following command:
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
-## Block 3: Intro to Singularity and Tapis(Agave) CLI & Systems
+## Intro to Singularity 
 * [Intro to Singularity](./block3/intro-singularity.md)
-* [Intro to Tapis(Agave)](./block3/tapis-intro.md)
-* [Intro to Tapis CLI](./block3/tapis-cli.md)
+
+## Tapis Systems
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-## Block 4: Intro to Tapis(Agave) Apps & Tapis(Aloe) Jobs
+## Tapis Apps
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
@@ -52,6 +61,7 @@ To clone this repo to your vm, use the following command:
   * [List Apps](./block4/apps.md#list-apps)
   * [Managing App Permissions](./block4/apps.md#apps-permissions)
 
+## Tapis Jobs
 * [Intro to Tapis(Aloe) Jobs](./block4/jobs.md)
   * [Tapis(Aloe) Jobs Service](./block4/jobs.md#tapisaloe-jobs-service)
   * [Jobs Parameters](./block4/jobs.md#jobs-parameters)
