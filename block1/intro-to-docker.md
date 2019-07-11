@@ -36,10 +36,10 @@ Docker is a platform (among serveral) for building and executing containers.
     * Docker Compose, Machine, Swarm - Tools for distributing containers across multiple hosts
 
 ### Initial setup
-Typically, accessing the docker daemon requires root to be in the docker group. For the purposes of this introduction,
- we can simply do everything as the root user:
+Typically, accessing the docker daemon requires the user to be in the docker group. For the purposes of this introduction,
+ we can simply do everything as the ubuntu user:
 ```
-$ sudo su - root
+$ su - ubuntu
 ```
 
 
