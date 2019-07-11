@@ -40,7 +40,7 @@
 * [Intro to Tapis CLI](./block3/tapis-cli.md)
 * [Intro to Tapis Systems](./block3/tapis-systems.md)
 
-## Block 4: Intro to Tapis(Agave) Apps & Jobs
+## Block 4: Intro to Tapis(Agave) Apps & Tapis(Aloe) Jobs
 * [Intro to Apps](./block4/apps.md)
   * [What is a Tapis(Agave) app?](./block4/apps.md#what-is-a-tapisagave-app)
   * [Tapis(Agave) Apps service](./block4/apps.md#tapisagave-apps-service)
