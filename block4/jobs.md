@@ -78,7 +78,7 @@ cat ~/.agave/current
 export token =<acces_token>
 
 Run below curl command
-curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2/media/system/UPDATESTORAGESYSTEM/UPDATEUSER/archive/jobs/job-UPDATEJOBID/predictions.txt':wq!
+curl -sk -H "Authorization: Bearer $token" 'https://api.tacc.utexas.edu/files/v2/media/system/UPDATESTORAGESYSTEM/UPDATEUSER/archive/jobs/job-UPDATEJOBID/predictions.txt'
 
 ``
 You can also download, the output files using the command below
