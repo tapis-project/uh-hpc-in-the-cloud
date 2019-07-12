@@ -63,6 +63,7 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
   "executionType": "HPC",
   "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
   "workDir": "/home1/0003/UPDATEUSERNAME/work",
+  "customDirectives":"-A UPDATEPROJECT -r UPDATERESERVATION",
   "login": {
     "host": "login1.stampede2.tacc.utexas.edu",
     "port": 22,
@@ -119,7 +120,7 @@ Complete reference information is located here:
 https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html
 
 ### Hands-on
-As a hands on exercise, register the Stampede2 HPC as a execution system using the Tapis-CLI using the above JSON template. - Don't forget to change *UPDATEUSERNAME* and *UPDATEPASSWORD* to your tutorial or TACC username.  
+As a hands on exercise, register the Stampede2 HPC as a execution system using the Tapis-CLI using the above JSON template. - Don't forget to change *UPDATEUSERNAME* and *UPDATEPASSWORD* to your tutorial or TACC username and *UPDATEPROJECT* and *UPDATERESERVATION* for this workshops Stampede2 provided project and reservation (or your personal ones if doing this on your own).  
 
 In your CLI you can now get a list of your systems using:
 ```

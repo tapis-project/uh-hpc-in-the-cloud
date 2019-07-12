@@ -4,7 +4,7 @@ The following instructions will guide you through setting up Tapis CLI.  As an a
 
 The Tapis CLI commands all respond with help for -h and return back information on the parameters that can be passed.  
 
-Need help?  Ask your questions using the TACC Cloud Slack Channel TODO_SLACKLINK
+Need help?  Ask your questions using the [TACC Cloud Slack Channel](https://bit.ly/2XHYJEk)
 
 Initial Requirements
 ===============================================
@@ -14,7 +14,7 @@ Before getting started, you need to have the following:
 * SSH access to the Stampede 2 compute cluster and an allocation.
 * Familiarity with [editing text files](https://www.nano-editor.org/dist/v2.7/nano.html) and [working at the command line](http://www.gnu.org/software/bash/manual/bashref.html#Introduction)
 
-Any questions?  Join the TACC CLOUD SLACK and ask away.
+Any questions?  Join the [TACC CLOUD SLACK CHANNEL](https://bit.ly/2XHYJEk) and ask away.
 
 
 Command Line Access
@@ -41,9 +41,30 @@ The CLI tools and instructions for installation can be found in the [CLI reposit
 
 Install the CLI tools with Docker
 ----------------------------------
+We can create the Dockerfile for the Tapis CLI 
 
 ```
-docker build -t tapis-cli:latest
+FROM gzynda/tacc-base:latest
+RUN apt-get update && \
+    apt-get install --upgrade && \
+    apt-get install -y jq && \
+    apt-get install -y curl && \
+    apt-get install -y python3 && \
+    apt-get install -y python3-pip && \
+    apt-get install -y git && \
+    apt-get install -y vim && \ 
+    apt-get install -y nano
+RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN pip3 install agavepy
+RUN git clone https://github.com/TACC-Cloud/agave-cli.git
+ENV PATH=$PATH:/agave-cli/bin/
+ENV LANG="C.UTF-8"
+```
+
+and then build the container:
+
+```
+docker build -t tapis-cli:latest .
 ```
 
 Let create the directory the Tapis CLI needs to save and track it's state in:
@@ -56,20 +77,22 @@ Now we can run CLI command with the docker container and mount the our home dire
 docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
 ```
 
-NOTE that we use -v to mount a volume that contians /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we stop or remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
+NOTE that we use -v to mount a volume that contains /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we stop or remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
 
 The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if you move to that directory you can see all the commands available:
 ```
-cd /agave/cli
-ls
+>docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
+>root@5c8c91edb474:/# auth-session-init
+>root@5c8c91edb474:/# cd /agave/cli
+>root@5c8c91edb474:/agave/cli# ls
 ```
 
 Updating the CLI with Docker
 ----------------
 
-In the future, you can update the Tapis CLI automatically to the latest version by pulling down the docker container with the tag "latest" and running you
+In the future, you can update the Tapis CLI automatically to the latest version by building a new docker container this will pull the latest CLI into the new container.  You can use a different tag than latest if you wish to have multiple versions or you can edit the Dockerfile to target a specific git branch or release as well.
 
-```docker pull tapis-cli:latest```
+```docker build -t tapis-cli:latest .```
 
 
 Authentication
@@ -93,9 +116,7 @@ The first time you install the CLI tools on a computer, you need to initialize i
 You can initialize the TACC tenant by runnning:
 
 ```
->mkdir ~/.agave
->docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
->root@5c8c91edb474:/# auth-session-init
+> auth-session-init
 ID                   NAME                                     URL
 vdjserver.org        VDJ Server                               https://vdj-agave-api.tacc.utexas.edu/
 sgci                 Science Gateways Community Institute     https://sgci.tacc.cloud/
@@ -128,7 +149,7 @@ Creating a Client
 The Tapis API uses OAuth 2 for managing authentication and authorization. Before you work with Tapis, you must create an OAuth client application and record the API keys that are returned. This is a one-time action per machine that you use the CLI and the 'auth-session-init' can take care of this.  In the event you need to create your own client you can pass additional parameters to the 'auth-session-init' command.  For instance if we want to make a new client.
 
 ```
->root@d4c62ca5988b:/agave-cli/bin# auth-session-init -h
+> auth-session-init -h
 usage: auth-session-init [-h] [-c CACHEDIR] [--tenants TENANTS] [-t TENANT]
                          [-u USERNAME] [-N CLIENT_NAME] [-D DESCRIPTION]
 
@@ -148,7 +169,7 @@ optional arguments:
   -D DESCRIPTION, --description DESCRIPTION
                         Description of client.
 
->root@d4c62ca5988b:/agave-cli/bin# auth-session-init -N myclient1
+> auth-session-init -N myclient1
 Client 'myclient1' is not saved in /root/.agave, so we will create it...
 Creating a client...
 API password:
@@ -169,7 +190,7 @@ Tokens are a form of short-lived, temporary authenticiation and authorization us
 On a host where you have configured a Tapis OAuth2 client already, the CLI command to get a new token is:
 
 ```
->root@291b0fe43291:/# auth-tokens-create -v
+> auth-tokens-create -v
 API password:
 ```
 
@@ -192,7 +213,7 @@ NOTE that the CLI will cache the new access and refresh tokens in the ~/.agave/c
 
 This tutorial won't take very long, but if you are interrupted and come back later, you might find your token has expired. You can always refresh a token as follows:
 
-```root@291b0fe43291:/# auth-tokens-refresh -v```
+```> auth-tokens-refresh -v```
 
 A successful refresh should appear:
 
