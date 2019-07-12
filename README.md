@@ -58,3 +58,5 @@
   * [Jobs Status](./block4/jobs.md#jobs-status)
   * [Jobs Output](./block4/jobs.md#jobs-output)
   * [Jobs Notifications](./block4/jobs.md#jobs-notifications)
+
+* [Link to Templates](./block4/templates)
