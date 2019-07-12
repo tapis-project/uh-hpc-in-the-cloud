@@ -29,7 +29,6 @@ Storage systems tell Tapis where data resides.  You can store files for running 
     }
   }
 }
-
 ```
 
 ### Hands-on
