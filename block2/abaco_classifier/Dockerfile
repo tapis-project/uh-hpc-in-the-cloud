@@ -11,4 +11,4 @@ RUN chmod +x /classify_image.py
 ADD abaco.sh /abaco.sh
 RUN chmod +x /abaco.sh
 
-CMD ["/abaco.sh"]
+CMD /abaco.sh
