@@ -1,10 +1,9 @@
-
 # Managing systems
 ---
 
 The Tapis API provides a way to access and manage the data storage and compute resources you already use (or maybe the systems you want to use), but first you have to tell Tapis where they are, how to login, and how to communicate with that system.  That is done by giving Tapis a short JSON description for each system.  
 
-## Storage Systems
+### Tapis Storage Systems
 
 Storage systems tell Tapis where data resides.  You can store files for running compute jobs, archive results, share files with collaborators, and maintain copies of your Tapis apps on storage systems.  Tapis supports many of the communication protocols and  permissions models that go along with them, so you can work privately, collaborate with individuals, or provide an open community resource.  It's up to you.  Here is an example of a simple data storage system template accessed via SFTP for the TACC Corral cloud storage system:
 ```json
@@ -13,7 +12,7 @@ Storage systems tell Tapis where data resides.  You can store files for running 
   "name": "Storage system for TACC cloud storage on corral",
   "status": "UP",
   "type": "STORAGE",
-  "description": "Storage system for TACC cloud storage on corral}",
+  "description": "Storage system for TACC cloud storage on corral",
   "site": "www.tacc.utexas.edu",
   "public": false,
   "default": true,
@@ -22,7 +21,7 @@ Storage systems tell Tapis where data resides.  You can store files for running 
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home/UPDATEUSERNAME/pearcsystems",
+    "homeDir": "/home/UPDATEUSERNAME/",
     "auth": {
       "username": "UPDATEUSERNAME",
       "password": "UPDATEPASSWORD",
@@ -30,6 +29,7 @@ Storage systems tell Tapis where data resides.  You can store files for running 
     }
   }
 }
+
 ```
 
 ### Hands-on
@@ -49,27 +49,27 @@ systems-list
 ```
 
 ---
-## Execution Systems
+### Tapis Execution Systems
 
 Execution systems in Tapis are very similar to storage systems.  They just have additional information for how to launch jobs.  In this example, we are using the Stampede2 HPC system, so we have to give scheduler and queue information.  This system description is longer than the storage definition due to logins, queues, scratch systems definitions.
 
 ```json
 {
   "id": "UPDATEUSERNAME.stampede2.execution",
-  "name": "Execution system for {{user}}",
+  "name": "Execution system for Stampede2",
   "status": "UP",
   "type": "EXECUTION",
   "description": "Execution system for Stampede2 ",
   "site": "www.tacc.utexas.edu",
   "executionType": "HPC",
-  "scratchDir": "/home1/05747/UPDATEUSERNAME/scratch",
-  "workDir": "/home1/05747/UPDATEUSERNAME/work",
+  "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
+  "workDir": "/home1/0003/UPDATEUSERNAME/work",
   "login": {
     "host": "login1.stampede2.tacc.utexas.edu",
     "port": 22,
     "protocol": "SSH",
-    "scratchDir": "/home1/05747/UPDATEUSERNAME/scratch",
-    "workDir": "/home1/05747/UPDATEUSERNAME/work",
+    "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
+    "workDir": "/home1/0003/UPDATEUSERNAME/work",
     "auth": {
       "username": "UPDATEUSERNAME",
       "password": "UPDATEPASSWORD",
@@ -81,10 +81,10 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
     "port": 22,
     "protocol": "SFTP",
     "rootDir": "/",
-    "homeDir": "/home1/05747/*UPDATEUSERNAME*",
+    "homeDir": "/home1/0003/UPDATEUSERNAME",
     "auth": {
-     "username": "*UPDATEUSERNAME*",
-      "password": "*UPDATEPASSWORD",
+     "username": "UPDATEUSERNAME",
+      "password": "UPDATEPASSWORD",
       "type": "PASSWORD"
     }
   },
@@ -99,7 +99,7 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
       "maxNodes": 128,
       "maxMemoryPerNode": "2GB",
       "maxProcessorsPerNode": 128,
-      "customDirectives":"-A *UPDATEALLOCATION*",
+      "customDirectives":"-A UPDATEALLOCATION",
       "maxRequestedTime": "24:00:00",
       "default": true
     }
@@ -136,8 +136,3 @@ systems-setdefault USERNAME.tacc.corral.storage
 ```
 
 Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis. For example, specifying an archivePath in a job request, but no archiveSystem, or specifying a deploymentPath in an app description, but no deploymentSystem. In these situations, Tapis will use the user’s default storage system.
-
-
-```python
-
-```
