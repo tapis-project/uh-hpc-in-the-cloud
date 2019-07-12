@@ -16,9 +16,7 @@ The primary Abaco instance is hosted at the Texas Advanced Computing Center. It 
 to the TACC Cloud APIs. Full details on getting the required accounts can be found on the Getting Started Guide here
 https://abaco.readthedocs.io/en/latest/getting-started/index.html#account-creation-and-software-installation
 
-For this workshop, we have installed TACC training accounts on your VM. If you wish to use your own TACC account
-you will also need TACC Cloud API keys (see the Working With TACC OAuth section, 
-https://abaco.readthedocs.io/en/latest/getting-started/index.html#working-with-tacc-oauth)
+For this workshop, we have installed TACC training accounts on your VM. 
 
 ### Registering an Actor
 
@@ -27,6 +25,21 @@ In this workshop we will focus on two clients: curl, which can be run from the c
 
 
 #### Initial Registration 
+
+First, you will need to subscribe your client to the Abaco API using the following:
+```
+curl -u <username> -d "apiName=Abaco&apiVersion=v2&apiProvider=admin" https://api.tacc.utexas.edu/clients/v2/abaco/subscriptions
+```
+
+Then, you will need to make sure you know what your access token value is. The following command will return all the information about your client in a JSON format, including your access token:
+```
+cat ~/.agave/current
+```
+
+We recommend saving your token into a variable for ease of use:
+```
+export TOKEN=<your-token-value>
+```
 
 Once you have your Docker image build and pushed to the Docker Hub, you can register an actor from it by making a POST request to the API. 
 The only required POST parameter is the image to use, but there are several other optional arguments.
@@ -48,7 +61,7 @@ Optional parameters:
 Here is an example using curl:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" \
+$ curl -k -H "Authorization: Bearer $TOKEN" \
 -H "Content-Type: application/json" \
 -d '{"image": "abacosamples/test", "name": "test", "description": "My test actor using the abacosamples image.", "default_environment":{"key1": "value1", "key2": "value2"} }' \
 https://api.tacc.cloud/actors/v2
@@ -78,13 +91,13 @@ Currently, two types of messages are supported: "raw" strings and JSON messages.
 To execute an actor passing a raw string, make a POST request with a single argument in the message body of `message`. Here is an example using curl:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" -d "message=some test message" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+$ curl -k -H "Authorization: Bearer $TOKEN" -d "message=some test message" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
 When this request is successful, the abaco will put a single message on the actor's message queue which will ultimately result in one container execution with the `$MSG` environment variable having the value `some test message`.
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" - https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
+$ curl -k -H "Authorization: Bearer $TOKEN" - https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
 ```
 
 The same execution could be made using the tapispy Python library like so:
@@ -98,7 +111,7 @@ The same execution could be made using the tapispy Python library like so:
 You can also send pure JSON as the actor message. To do so, specify a Content-Type of "application/json". Here is an example using curl:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username": "jdoe", "application_id": "print-env-cli-DggdGbK-0.1.0" }' https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+$ curl -k -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username": "jdoe", "application_id": "print-env-cli-DggdGbK-0.1.0" }' https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
 One advantage to passing JSON is that the python library will automatically attempt to deserialize it into a pure Python object. This shows up in the `context` object under the `message_dict` key. For example, for the example above, the corresponding rector (if written in Python) could retrieve the application_id from the message with the following code:
@@ -125,7 +138,7 @@ Logs are anything written to standard out during the container execution. Note t
 To get details about an execution, make a GET request to the actor's executions collection with the execution id:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID
+$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID
 ```
 Here is an example response:
 ```
@@ -176,7 +189,7 @@ The equivalent request in Python looks like:
 Finally, to retrieve an execution's logs, make a GET request to the logs collection for the execution. For example:
 
 ```
-$ curl -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
+$ curl -k -H "Authorization: Bearer $TOKEN" https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
 ```
 Here is an example response:
 ```
