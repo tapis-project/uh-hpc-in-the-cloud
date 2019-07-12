@@ -1,12 +1,8 @@
-
 Tutorial: Getting Started with Tapis CLI
 ===============================================
 The following instructions will guide you through setting up Tapis CLI.  As an aside, everything we do today can also be accomplished from a command line interface or by directly calling API endpoints.  
 
 The Tapis CLI commands all respond with help for -h and return back information on the parameters that can be passed.  
-
-TODO - WILL THIS STILL WORK
-Also note that in Jupyter you can start typing a command and use tab auto-complete or list the options which is useful when looking for some of the CLI commands.  We can for example try this with "system"
 
 Need help?  Ask your questions using the TACC Cloud Slack Channel TODO_SLACKLINK
 
@@ -15,7 +11,7 @@ Initial Requirements
 
 Before getting started, you need to have the following:
 * A TACC Account - today you have a test account
-* SSH access to the Stampede 2 compute cluster
+* SSH access to the Stampede 2 compute cluster and an allocation.
 * Familiarity with [editing text files](https://www.nano-editor.org/dist/v2.7/nano.html) and [working at the command line](http://www.gnu.org/software/bash/manual/bashref.html#Introduction)
 
 Any questions?  Join the TACC CLOUD SLACK and ask away.
@@ -24,25 +20,30 @@ Any questions?  Join the TACC CLOUD SLACK and ask away.
 Command Line Access
 ===================
 
-We won't install it in this workshop, but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Instructions for installing those tools are below:
+We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Instructions for installing those tools are below:
 
 Installing the Tapis CLI Tools
 ------------------------------
 
 Tapis has a downloadable set of command line tools that make it easier to work with the API from the shell. Using these scripts is generally easier than hand-crafting cURL commands, but if you prefer that route, consult the [Tapis API Documentation](https://tacc-cloud.readthedocs.io/en/latest/). We include these scripts in the training virtual machines and supplement them with additional support scripts, example files, and documents.
 
-During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own personal computer by:
+During the course, we will use the Jetstream Cloud virtual machines, but if you have a shell on your personal computer, you can install these tools on your own personal later.
 
-Using your Terminal program in Jupyter, *ssh* into the system you will be working with:
+To use access the CLI for this tutorial you can open a Terminal  in Jupyter which give you access to the shell in the Jetstream VM, OR *ssh* into the system from you own terminal:
 
-```ssh TEST_USERNAME@jetstreamvm_ip_address```
+```ssh ubunut@jetstreamvm_ip_address```
+
+Install the CLI tools
+----------------------------------
+
+The CLI tools and instructions for installation can be found in the [CLI repository](https://github.com/TACC-Cloud/agave-cli)
 
 
 Install the CLI tools with Docker
 ----------------------------------
 
 ```
-docker pull tapis-cli:latest
+docker build -t tapis-cli:latest
 ```
 
 Let create the directory the Tapis CLI needs to save and track it's state in:
@@ -55,15 +56,15 @@ Now we can run CLI command with the docker container and mount the our home dire
 docker run -v /home/username/.agave:/root/.agave tapis-cli:latest
 ```
 
-NOTE that we use -v to mount a volume that continat /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
+NOTE that we use -v to mount a volume that contians /home/username/.agave so that the container can write directly to that folder and anything written there will be available on the host and therefore can exist after we stop or remove the Docker container - this is useful for using different versions of the CLI container as updates and patches are released.
 
-The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if you move do that directory you can see all the commands available:
+The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if you move to that directory you can see all the commands available:
 ```
 cd /agave/cli
 ls
 ```
 
-Updating the CLI
+Updating the CLI with Docker
 ----------------
 
 In the future, you can update the Tapis CLI automatically to the latest version by pulling down the docker container with the tag "latest" and running you
@@ -84,6 +85,7 @@ Run the following in you CLI docker container
 Please run /agave-cli/bin/tenants-init to initialize your client before attempting to interact with the APIs.
 ```
 We will see that we have to initialize some things before we can use Tapis.
+
 Initialize the CLI
 ------------------
 
@@ -212,8 +214,3 @@ NOTE that most CLI commands will attempt to do a token refresh on your behalf if
 ## Command Help
 
 Note that all the CLI commands take the '-h' flag to display a short description and the accept parameters for the command.
-
-
-```python
-
-```
