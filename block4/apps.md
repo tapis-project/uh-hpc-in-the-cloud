@@ -37,7 +37,7 @@ package-name-version
 |- wrapper.sh
 ```
 
-package-name-version is a folder that you create on your local VM and transfer it to Tapis(Agave) cloud storage system in a designated location. This folder contains binaries, support scripts, test data, etc. all in one package.
+package-name-version is a folder that you create on your Jetstream VM and transfer it to Tapis(Agave) cloud storage system in a designated location. This folder contains binaries, support scripts, test data, etc. all in one package.
 
 
 ### Application metadata
@@ -65,7 +65,7 @@ systems-list
 ```
 
 
-### Step 1: Creating the app bundle locally 
+### Step 1: Creating the app bundle locally on your Jetstream VM
  *  From ~/applications/classifyApp-1.0 directory on your VM,  singularity pull the classifier docker image using the command below. This should take 7-9 mins to build the image. 
 
 ```
@@ -92,7 +92,7 @@ singularity run pearc19-classifier.simg python /classify_image.py ${imagefile} $
 Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
 
 * Test data:
-If you have a small set of test data, it can be useful to other developers if you include it in a **test** directory. Inside your classifyApp-1.0 directory, create a directory called **test** and create a test script inside it, called **test.sh**.You can make sure your wrapper script runs fine using by running the test.sh on the local vm
+If you have a small set of test data, it can be useful to other developers if you include it in a **test** directory. Inside your classifyApp-1.0 directory, create a directory called **test** and create a test script inside it, called **test.sh**.You can make sure your wrapper script runs fine using by running the test.sh on the Jetstream VM.
  
 ```
 cd ~/applications/classifyApp-1.0 && mkdir test && cd test && touch test.sh
@@ -106,16 +106,22 @@ It is always a good idea to include a test script that can run your app against 
 #!/bin/bash
 module load tacc-singularity/2.6.0
 
-export imagefile="--image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg"
+export imagefile="--image_file https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg"
 export predictions="--num_top_predictions 5"
 
 cd ../ && bash wrapper.sh
 ```
-
+Before you actually tranfer the app bundle to cloud storage, let's just verify if the wrapper script works as expected. We will run test.run on your Jetstream VM.
+Give executable permissions to your test.sh
+```
+chmod 700 test.sh
+```
+and then ./test.sh
+You should see the output prediction score inside **predicitons.txt** file in classifyApp1.0 folder. 
 
 
 ### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. 
-You should run below commands from your local VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system
+You should run below commands from your Jetstream VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system.
 We are making folders on your cloud storage systems with the commands below
 
 ```
@@ -140,11 +146,11 @@ files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
 ### Step 3: Crafting your app definition 
 Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as mupdating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
 
-Store this app.json in your classifyApp-1.0 directory on the local VM. 
+Store this app.json in your classifyApp-1.0 directory on the Jetstream VM. 
 
 
 ### Step 4: Registering an app
-Once you have an application bundle ready to go and app definition crafted, you can run the following CLI command from classifyApp-1.0 directory from your local VM
+Once you have an application bundle ready to go and app definition crafted, you can run the following CLI command from classifyApp-1.0 directory from your Jetstream VM
 ```
 apps-addupdate -F app.json
 ```

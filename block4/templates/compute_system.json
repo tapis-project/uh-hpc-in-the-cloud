@@ -43,7 +43,7 @@
       "maxNodes": 128,
       "maxMemoryPerNode": "2GB",
       "maxProcessorsPerNode": 128,
-      "customDirectives":"-A UPDATEALLOCATION",
+      "customDirectives":"-A UPDATEPROJECT -r UPDATERESERVATION",
       "maxRequestedTime": "24:00:00",
       "default": true
     }

@@ -24,7 +24,7 @@ Presenters here, overview
   * [Building Images from a Dockerfile](./block1/intro-to-docker.md#building-images-from-a-dockerfile)
   * [Running a Docker Container](./block1/intro-to-docker.md#running-a-docker-container)
   * [Removing Docker Containers](./block1/intro-to-docker.md#removing-docker-containers)
-  
+
 ## Intro to Tapis (Agave)
 * [Intro to Tapis(Agave)](./block3/tapis-intro.md)
 
@@ -45,7 +45,7 @@ Presenters here, overview
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
   * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
-## Intro to Singularity 
+## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
 
 ## Tapis Systems
@@ -70,3 +70,5 @@ Presenters here, overview
   * [Jobs Status](./block4/jobs.md#jobs-status)
   * [Jobs Output](./block4/jobs.md#jobs-output)
   * [Jobs Notifications](./block4/jobs.md#jobs-notifications)
+
+* [Link to Templates](./block4/templates)

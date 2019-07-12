@@ -162,7 +162,7 @@ RUN apt-get update && apt-get install -y wget
 ```
  
 #### The ADD instruction
-We can also add local files to our image using the `ADD` instruction. We can add a file `test.txt` in our local directory to the `/root` directory in our container with the following instruction:
+We can also add local files to our image using the `ADD` instruction. First, create a new file with `touch test.txt`. We can add this file in our local directory to the `/root` directory in our container with the following instruction:
 
 ```
 ADD test.txt /root/text.txt
@@ -186,6 +186,11 @@ ENTRYPOINT ["ls", "-l"]
 
 Note: additional arguments can still be passed to the entrypoint when launching a container.
 
+Now you can build and run your docker image:
+```
+docker build -t YOUR-IMAGE-NAME .
+docker run YOUR-IMAGE-NAME
+```
 
 
 #### Building a Pre-trained Image Classifier Docker Image
@@ -224,8 +229,7 @@ python /path/to/classify_image.py
 ```
 Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
 
-
-Note: A complete Dockerfile for the classifier image is available in the workshop repository:
+*Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
 https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
 
 ##### Step 5. Build the image
