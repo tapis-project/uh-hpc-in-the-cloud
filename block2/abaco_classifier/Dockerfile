@@ -6,9 +6,11 @@ FROM tensorflow/tensorflow:1.5.0-py3
 RUN pip install requests
 
 # add our app
-ADD classify_image.py /classify_image.py
-RUN chmod +x /classify_image.py
-ADD abaco.sh /abaco.sh
-RUN chmod +x /abaco.sh
+RUN mkdir /apps
+ADD classify_image.py /app/classify_image.py
+RUN chmod +x /app/classify_image.py
+ADD abaco.sh /app/abaco.sh
+RUN chmod +x /app/abaco.sh
+RUN chmod -R 777 /app
 
-CMD ["/abaco.sh"]
+CMD ["/app/abaco.sh"]
