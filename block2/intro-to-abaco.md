@@ -20,29 +20,52 @@ For this workshop, we have installed TACC training accounts on your VM. If you w
 you will also need TACC Cloud API keys (see the Working With TACC OAuth section, 
 https://abaco.readthedocs.io/en/latest/getting-started/index.html#working-with-tacc-oauth)
 
+#### Checking Access to the TACC APIs
+To use any TACC API, including Abaco, you will need an access token. Once generated, tokens are valid
+for 4 hours. As we saw in the previous section, you can refresh your access token using the CLI:
+
+```bash
+> auth-tokens-refresh -v
+```
+
+You can export this token and check access to the Abaco API using the following:
+
+```bash
+> export TOKEN=<the_token>
+> curl -H "Authorization: Bearer $TOKEN" https://api.tacc.utexas.edu/actors/v2
+```
+
+The API should return a JSON object and a success message if all went well.
+
 ### Registering an Actor
 
-The hosted TACC actors service sits on top of a RESTful HTTP API called Abaco. To work with the service, any HTTP client can be used. 
-In this workshop we will focus on two clients: curl, which can be run from the command line in most Unix like environments; and the tapispy Python library.
+As Abaco is an HTTP API, to work with the service, any HTTP client can be used. 
+In this workshop we will focus on two clients: `curl`, which can be run from the command line in most Unix like 
+environments; and the `tapispy` Python library.
 
 
 #### Initial Registration 
 
-Once you have your Docker image build and pushed to the Docker Hub, you can register an actor from it by making a POST request to the API. 
+Once you have a Docker image build and pushed to the Docker Hub, you can register an actor from it by making a 
+POST request to the Abaco API. 
 The only required POST parameter is the image to use, but there are several other optional arguments.
 
 #### Complete List of Registration Parameters 
 The following parameters can be passed when registering a new actor.
 
 Required parameters:
-* image - The Docker image to associate with the actor. This should be a fully qualified image available on the public Docker Hub.
+* image - The Docker image to associate with the actor. This should be a fully qualified image available on the public 
+Docker Hub.
 
 Optional parameters:
 * name - A user defined name for the actor.
 * description - A user defined description for the actor.
-* default_environment - The default environment is a set of key/value pairs to be injected into every execution of the actor. The values can also be overridden when passing a message to the actor in the query parameters.
-* stateless (True/False) - Whether the actor stores private state as part of its execution. If True, the state API will not be available. The default value is False.
-* privileged (True/False) - Whether the actor runs in privileged mode and has access to the Docker daemon. *Note: Setting this parameter to True requires elevated permissions.*
+* default_environment - The default environment is a set of key/value pairs to be injected into every execution of the 
+actor. The values can also be overridden when passing a message to the actor in the query parameters.
+* stateless (True/False) - Whether the actor stores private state as part of its execution. If True, the state API will 
+not be available. The default value is False.
+* privileged (True/False) - Whether the actor runs in privileged mode and has access to the Docker daemon. *Note: 
+Setting this parameter to True requires elevated permissions.*
 
 
 Here is an example using curl:
@@ -54,7 +77,8 @@ $ curl -H "Authorization: Bearer $TOKEN" \
 https://api.tacc.cloud/actors/v2
 ```
 
-To register an actor using the tapispy library, we use the `actors.add()` method and pass the same arguments through the `body` parameter. For example,
+To register an actor using the `tapispy` library, we use the `actors.add()` method and pass the same arguments through 
+the `body` parameter. For example,
 
 ```
 >>> from tapispy.tapis import Tapis
@@ -66,26 +90,25 @@ To register an actor using the tapispy library, we use the `actors.add()` method
 
 ### Executing an Actor
 
-To execute a Docker container associated with an actor, we send the actor a message by making a POST request to the actor's inbox URI which is of the form:
+To execute a Docker container associated with an actor, we send the actor a message by making a POST request to the 
+actor's inbox URI which is of the form:
 ```
 https://api.tacc.cloud/actors/v2/<actor_id>/messages
 ```
 
-Currently, two types of messages are supported: "raw" strings and JSON messages.
+Currently, three types of messages are supported: "raw" text strings, JSON messages, and "binary" messages.
 
 ### Executing Actors with Raw Strings ###
 
-To execute an actor passing a raw string, make a POST request with a single argument in the message body of `message`. Here is an example using curl:
+To execute an actor passing a raw string, make a POST request with a single argument in the message body of `message`. 
+Here is an example using curl:
 
 ```
 $ curl -H "Authorization: Bearer $TOKEN" -d "message=some test message" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
-When this request is successful, the abaco will put a single message on the actor's message queue which will ultimately result in one container execution with the `$MSG` environment variable having the value `some test message`.
-
-```
-$ curl -H "Authorization: Bearer $TOKEN" - https://api.tacc.cloud/actors/v2/$ACTOR_ID/executions/$EXECUTION_ID/logs
-```
+When this request is successful, Abaco will put a single message on the actor's message queue which will ultimately 
+result in one container execution with the `$MSG` environment variable having the value `some test message`.
 
 The same execution could be made using the tapispy Python library like so:
 
@@ -95,13 +118,18 @@ The same execution could be made using the tapispy Python library like so:
 
 ### Executing Actors by Passing JSON ###
 
-You can also send pure JSON as the actor message. To do so, specify a Content-Type of "application/json". Here is an example using curl:
+You can also send pure JSON as the actor message. To do so, specify a Content-Type of "application/json". Here is an 
+example using curl:
 
 ```
 $ curl -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d '{"username": "jdoe", "application_id": "print-env-cli-DggdGbK-0.1.0" }' https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
-One advantage to passing JSON is that the python library will automatically attempt to deserialize it into a pure Python object. This shows up in the `context` object under the `message_dict` key. For example, for the example above, the corresponding rector (if written in Python) could retrieve the application_id from the message with the following code:
+For actors written in Python, Abaco provides a set of helper Python functions for tasks such as parsing the message
+data and returning "results". One advantage to passing JSON  is that this library will automatically attempt to 
+deserialize the JSON into a pure Python object. This shows up in the `context` object under the `message_dict` key. For example, for the example above, 
+the corresponding actor (if written in Python) could retrieve the application_id from the message with the following 
+code:
 
 ```
 from tapispy.actors import get_context
