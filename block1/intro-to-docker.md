@@ -140,46 +140,57 @@ python                         latest              a5b7afcfdcc8        3 hours a
 We can build images from a text file called a Dockerfile. You can think of a Dockerfile as a recipe for creating images.
 The instructions within a dockerfile either add files/folders to the image, add metadata to the image, or both.
 
+Create a new file and save is as Dockerfile. 
+
 #### The FROM instruction
 We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
 
-```
-FROM ubuntu:16.04 
 
-```
+> FROM ubuntu:16.04 
+
 
 #### The RUN instruction
 We can add files to our image by running commands with the `RUN` instruction. We will use that to install `wget` via `apt`. Keep in mind that the the docker build cannot handle interactive prompts, so we use the `-y` flag in `apt`. We also need to be sure to update our apt packages.
 
 The Dockerfile will look like this now:
-```
-FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install -y wget
-```
+> FROM ubuntu:16.04
+>
+> RUN apt-get update && apt-get install -y wget
+
  
 #### The ADD instruction
-We can also add local files to our image using the `ADD` instruction. First, create a new file with `touch test.txt`. We can add this file in our local directory to the `/root` directory in our container with the following instruction:
+We can also add local files to our image using the `ADD` instruction. First, create a new file:
+```
+touch test.txt
+```
+We can add this file in our local directory to the `/root` directory in our container with the **ADD** instruction:
 
-```
-ADD test.txt /root/text.txt
-```
+> FROM ubuntu:16.04
+>
+> RUN apt-get update && apt-get install -y wget
+>
+> **ADD test.txt /root/test.txt**
+
 
 #### The ENTRYPOINT instruction
 The ENTRYPOINT instruction defines the executable that will be run within each container started from the image. Though
 it is possible to ignore the ENTRYPOINT and run a different executable when lauching a container, providing an ENTRYPOINT
 definition in the image is convenient.
 
-The value for ENTRYPOINT should be of the form:
-```
-["executable", "param1", "param2", ...]
-```
+The value for ENTRYPOINT should be of the form: `["executable", "param1", "param2", ...]`
+
 
 For this example, we will use the `ls` program as our entrypoint.
 
-```
-ENTRYPOINT ["ls", "-l"]
-```
+> FROM ubuntu:16.04
+>
+> RUN apt-get update && apt-get install -y wget
+>
+> ADD test.txt /root/test.txt
+>
+> **ENTRYPOINT \["ls", "-l"\]**
+
 
 Note: additional arguments can still be passed to the entrypoint when launching a container.
 
