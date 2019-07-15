@@ -15,7 +15,7 @@ Use the growing catalog of publicly available apps or design custom apps.
 All this is hosted for you, you don't have to stand up your own servers to access any of these features.
 
 ### A Number of Science Gateways and projects leverage Tapis:
-​
+
 * [Cyverse](https://cyerse.org)
 * [Design-safe](https://www.designsafe-ci.org/#!#research)
 * [iMicrobe](https://www.imicrobe.us)
@@ -38,7 +38,7 @@ These tools make it easier to utilize and build complex workflows and applicatio
 
 ### Tapis can be simple
 
-You don't have to do a lot of complex things to use Tapis.  If you just want something to automate taking data from one place and moving it to a compute system, run the computation and then move it back with one command from Tapis - you can do that (We will show you how today).  Maybe others in your lab or department want to do the same thing you can share the application and they can run there data agains the same software and compute system as well.
+You don't have to do a lot of complex things to use Tapis.  If you just want something to automate taking data from one place and moving it to a compute system, run the computation and then move it back with one command from Tapis - you can do that (We will show you how today).  Maybe others in your lab or department want to do the same thing you can share the application and they can run their data against the same software and compute system as well.
 ​
 ### Full Tapis Documentation
 ​
