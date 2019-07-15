@@ -26,7 +26,7 @@ for 4 hours. As we saw in the previous section, you can refresh your access toke
 > auth-tokens-refresh -v
 ```
 
-You can export this token and check access to the Abaco API using the following:
+We recommend saving your token into a variable for ease of use:
 
 ```bash
 > export TOKEN=<the_token>
@@ -41,27 +41,10 @@ As Abaco is an HTTP API, to work with the service, any HTTP client can be used.
 In this workshop we will focus on two clients: `curl`, which can be run from the command line in most Unix like
 environments; and the `tapispy` Python library.
 
-
 #### Initial Registration
 
-
-First, you will need to subscribe your client to the Abaco API using the following:
-```
-curl -u <username> -d "apiName=Abaco&apiVersion=v2&apiProvider=admin" https://api.tacc.utexas.edu/clients/v2/abaco/subscriptions
-```
-
-Then, you will need to make sure you know what your access token value is. The following command will return all the information about your client in a JSON format, including your access token:
-```
-cat ~/.agave/current
-```
-
-We recommend saving your token into a variable for ease of use:
-```
-export TOKEN=<your-token-value>
-```
-
-Once you have a Docker image build and pushed to the Docker Hub, you can register an actor from it by making a
-POST request to the Abaco API.
+Once you have a Docker image build and pushed to the Docker Hub, you can register
+an actor from it by making a POST request to the Abaco API.
 
 The only required POST parameter is the image to use, but there are several other optional arguments.
 
@@ -101,7 +84,6 @@ the `body` parameter. For example,
 >>> actor = {"image": "abacosamples/test", "name": "test", "description": "My test actor using the abacosamples image registered using agavepy.", "default_environment":{"key1": "value1", "key2": "value2"} }
 >>> tp.actors.add(body=actor)
 ```
-
 
 ### Executing an Actor
 
