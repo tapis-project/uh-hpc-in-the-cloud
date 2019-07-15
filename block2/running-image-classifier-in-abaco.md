@@ -3,7 +3,9 @@
 ### Getting the Image Ready and Registering an Actor
 
 #### Preparing our code for Abaco
-To run our classifier image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. 
+To run our classifier image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. This could be written in anything, including the original Python script; for simplicity, we'll write a short Bash script. 
+
+Create a new file called `abaco.sh` and add the following content:
 
 ```bash
 #!/bin/bash
@@ -11,14 +13,47 @@ To run our classifier image with Abaco, we will first need to create a script th
 # print the special MSG variable:
 echo "Contents of MSG: "$MSG
 
-python "/classify_image.py --image_file="$MSG
+python "/classify_image.py --image_file=$MSG
 ```
 
-The message sent to abaco will be saved in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
+Once we register our actor and sent it a message, Abaco will pass the contents of the message in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
 Because we have added this wrapper script, we will need to update our Dockerfile before we create an Abaco actor.
 
 ```
 # image: taccsciapps/classify_image
+
+# create a direcotory for our app:
+RUN mkdir /app
+
+# add our app
+ADD classify_image.py /app/classify_image.py
+RUN chmod +x /app/classify_image.py
+ADD abaco.sh /app/abaco.sh
+RUN chmod +x /app/abaco.sh
+
+# by default, execute the abaco.sh script - 
+CMD ["/app/abaco.sh"]
+```
+
+
+Notice that instead of our entrypoint being `classify_image.py` as it was before, it is now set to run our wrapper script, `abaco.sh`.
+
+Another difference with running on Abaco is that Abaco will run our actor using the UID associated with our TACC account.
+This ensures files created and modified by the actor are owned by the API user. 
+
+In order for this to work, we need to ensure that our container can run properly as a non-root user. Running containers as 
+a non-root user is good practice in general. To make it so that a non-root user can
+write the downloaded file to the container's file system, we can `chmod 777` the `/app` directory:
+
+```bash
+RUN chmod -R 777 /app
+```
+
+The final Dockerfile is thus:
+
+```bash
+
+# image: taccsciapps/abaco_classifier
 
 FROM tensorflow/tensorflow:1.5.0-py3
 
@@ -26,15 +61,16 @@ FROM tensorflow/tensorflow:1.5.0-py3
 RUN pip install requests
 
 # add our app
-ADD classify_image.py /classify_image.py
-ADD abaco.sh /abaco.sh
+RUN mkdir /apps
+ADD classify_image.py /app/classify_image.py
+RUN chmod +x /app/classify_image.py
+ADD abaco.sh /app/abaco.sh
+RUN chmod +x /app/abaco.sh
+RUN chmod -R 777 /app
 
+CMD ["/app/abaco.sh"]
 
-ENTRYPOINT ["/abaco.sh"]
 ```
-
-
-Notice that instead of our entrypoint being `classify_image.py` as it was before, it is now set to run our wrapper script, `abaco.sh`.
 
 #### Creating an Abaco Actor
 

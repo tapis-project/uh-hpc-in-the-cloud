@@ -63,7 +63,6 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
   "executionType": "HPC",
   "scratchDir": "/home1/0003/UPDATEUSERNAME/scratch",
   "workDir": "/home1/0003/UPDATEUSERNAME/work",
-  "customDirectives":"-A UPDATEPROJECT -r UPDATERESERVATION",
   "login": {
     "host": "login1.stampede2.tacc.utexas.edu",
     "port": 22,
@@ -101,6 +100,7 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
       "maxProcessorsPerNode": 128,
       "customDirectives":"-A UPDATEALLOCATION",
       "maxRequestedTime": "24:00:00",
+      "customDirectives":"-A UPDATEPROJECT -r UPDATERESERVATION",
       "default": true
     }
   ],
