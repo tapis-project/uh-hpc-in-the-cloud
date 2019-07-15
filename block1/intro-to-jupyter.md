@@ -6,12 +6,9 @@ Jupyter is an open source project that provides a webapp interface for writing c
 
 ### Starting up your Jupyter Notebook Environment
 
-To start up your Jupyter notebook, enter the following command on your command prompt:
-```bash
-jupyter notebook
-```
+Your jupyter notebook server should be already running at `https://<ip>:8888`. You can reach it by going to that location in a browser window. If it is not running, then you can run `~/startjupyter.sh` to get it running again. 
 
-This will open a browser with your new Jupyter environment, and should appear similarly to this: 
+Once you open a browser with your Jupyter environment, you should see something similar to this: 
 
 ![alt text](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/images/jupyter1.png "Initial Jupyter Interface")
 
