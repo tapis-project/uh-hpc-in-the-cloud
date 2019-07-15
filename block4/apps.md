@@ -2,8 +2,8 @@
 ---
 
 ### What is a Tapis(Agave) app? 
-A Tapis(Agave) App is versioned, containerized executable that runs on a specific execution system through Tapis(Agave) Jobs service.  
-So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single application code needs to be run on multiple systems, each combination of app and system needs to be defined as a separate app.
+A Tapis(Agave) App is versioned, containerized executable that runs on a specific execution system through Tapis(Aloe) Jobs service.  
+So, for example, if you have multiple versions of a software package on a system, you would register each version as its own app. Likewise, if a single application code needs to be run on multiple systems, each combination of app and system needs to be defined as an app.
 Once you have storage and execution systems registered with Tapis(Agave), you are ready to build and use apps. 
 
 
@@ -13,15 +13,14 @@ Apps service is a central registry for all Tapis(Agave) apps. With Apps service 
 * register new apps
 * manage or share app permissions
 * revise existing apps
-* view information about each app such as its version number, owner, revision number in addition to the usual discovery capability
- 
+* view information about each app such as its version number, owner, revision number to name a few
 The rest of this tutorial explains details about how to package your Tapis(Agave) app, register your app with the Apps service and some other useful apps CLI commands. 
 
 
 ### App Packaging 
-Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave jobs service. More on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
+Tapis(Agave) apps are bundled into a directory and organized in a way that Tapis(Aloe) jobs can properly invoke it. Tapis(Aloe) is the new code name for rearchitectured Agave Jobs service. More on this in the next part of the tutorial. Though there is plenty of opportunity to establish your own conventions, at the very least, your application folder should have the following in it:
 
-* An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. More on this in the next section.
+* An execution script that creates and executes an instance of the application. We refer to this as the <em>wrapper template</em> throughout the documentation. For the sake of maintainability, it should be named something simple and intuitive like `wrapper.sh`. 
 * A library subdirectory: This contains all scripts, non-standard dependencies, binaries needed to execute an instance of the application.  
 * A test directory containing a script named something simple and intuitive like `test.sh`, along with any sample data needed to evaluating whether the application can be executed in a current command-line environment. It should exit with a status of 0 on success when executed on the command line. A simple way to create your test script is to create a script that sets some sensible default values for your app's inputs and parameters and then call your wrapper template.
 
@@ -37,7 +36,7 @@ package-name-version
 |- wrapper.sh
 ```
 
-package-name-version is a folder that you create on your Jetstream VM and transfer it to Tapis(Agave) cloud storage system in a designated location. This folder contains binaries, support scripts, test data, etc. all in one package.
+package-name-version is a folder that you will create on your Jetstream VM and transfer it to Tapis(Agave) cloud storage system in a designated location. This folder contains binaries, support scripts, test data, etc. all in one package. Before we get into this, lets have a quick look at the App metadata.
 
 
 ### Application metadata
@@ -92,7 +91,7 @@ singularity run pearc19-classifier.simg python /classify_image.py ${imagefile} $
 Within a wrapper script, you can reference the ID of any Tapis(Agave) input or parameter from the app description.  Before executing a wrapper script, Tapis(Agave) will look for the these references and substitute in whatever was that value was.  This will make more sense once we start running jobs, but this is the way we connect what you tell the Tapis(Agave) API that you want to do and what actually runs on the execution system.  The other thing Tapis(Agave) will do with the wrapper script is prepend all the scheduler information necessary to run the script on the execution system.
 
 * Test data:
-If you have a small set of test data, it can be useful to other developers if you include it in a **test** directory. Inside your classifyApp-1.0 directory, create a directory called **test** and create a test script inside it, called **test.sh**.You can make sure your wrapper script runs fine using by running the test.sh on the Jetstream VM.
+If you have a small set of test data, it can be useful to other developers if you include it in a **test** directory. Inside your classifyApp-1.0 directory, create a directory called **test** and create a test script called **test.sh** inside it.You can make sure your wrapper script runs fine using by running the test.sh on the Jetstream VM.
  
 ```
 cd ~/applications/classifyApp-1.0 && mkdir test && cd test && touch test.sh
@@ -116,12 +115,17 @@ Give executable permissions to your test.sh
 ```
 chmod 700 test.sh
 ```
-and then ./test.sh
+and then run command
+```
+./test.sh
+
+```
 You should see the output prediction score inside **predicitons.txt** file in classifyApp1.0 folder. 
 
 
 ### Step 2: Transfering your app bundle to the cloud storage system using Tapis(Agave) Files service. 
 You should run below commands from your Jetstream VM's classifyApp-1.0 folder. Replace the UPDATESTORAGESYSTEMID with the name of your storage system.
+
 We are making folders on your cloud storage systems with the commands below
 
 ```
@@ -144,7 +148,7 @@ files-cp test/test.sh agave://UPDATESTORAGESYSTEMID/applications/classifyApp-1.0
 ```
 
 ### Step 3: Crafting your app definition 
-Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as mupdating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
+Your classifier app definiton [app.json](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/templates/app.json) is written in JSON, and conforms to an Tapis (Agave)-specific data model. With minimal changes such as updating the names of storage and execution systems, you should be able to register your very first Tapis(Agave) app.
 
 Store this app.json in your classifyApp-1.0 directory on the Jetstream VM. 
 
@@ -158,6 +162,7 @@ apps-addupdate -F app.json
 
 Tapis(Agave) will check the app description, look for the app bundle on the deploymentSystem, and if everything passes, make it available to run jobs with Tapis Jobs service.
 
+Some other useful CLI commands:
 
 ### List apps 
 Now if you list apps you should see the app you just registered. You should also see other public apps available to the user in that tenant
