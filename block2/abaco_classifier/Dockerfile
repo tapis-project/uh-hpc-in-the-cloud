@@ -13,8 +13,4 @@ ADD abaco.sh /app/abaco.sh
 RUN chmod +x /app/abaco.sh
 RUN chmod -R 777 /app
 
-<<<<<<< HEAD
-CMD /abaco.sh
-=======
 CMD ["/app/abaco.sh"]
->>>>>>> f5ec9b89482e95b479cf59b7937210300c197d9d
