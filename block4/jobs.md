@@ -38,13 +38,14 @@ From your home directory, where job.json file is located run job submission comm
 ```
 jobs-submit -F job.json
 ```
-You should see a message "Successfully submitted job <jobID>. This is the job uuid, which is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
-
 Alternately, to get a detialed job response run with a -V option
 ```
 jobs-submit -F job.json -V
 
 ```
+You should see a message "Successfully submitted job <jobID>. This is the job uuid is unique, everytime you submit a job. You will use this uuid to get the Job Status, output listing and much more.
+
+
 
 ### Jobs List
 Now, when you do a jobs-list you can see your job
