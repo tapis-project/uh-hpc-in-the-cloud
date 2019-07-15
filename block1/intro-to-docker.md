@@ -37,10 +37,7 @@ Docker is a platform (among serveral) for building and executing containers.
 
 ### Initial setup
 Typically, accessing the docker daemon requires the user to be in the docker group. For the purposes of this introduction,
- we can simply do everything as the ubuntu user:
-```
-$ su - ubuntu
-```
+ we can simply do everything as the ubuntu user, which you are already logged in as. 
 
 
 Make sure you can access the docker daemon; you can verify this by checking the version:
