@@ -104,10 +104,10 @@ Let's check that our docker installation is set up correctly by pulling the `tac
 and running a simple container from it:
 ```
 # pull the image:
-docker pull tacc/tacc/uh-workshop19:0.1.0
+docker pull tacc/uh-workshop19:0.1.0
 
 # run a container:
-docker run tacc/tacc/uh-workshop19:0.1.0
+docker run tacc/uh-workshop19:0.1.0
 
 ```
 We'll cover the `docker run` statement in more detail momentarily, but for now just know that it
