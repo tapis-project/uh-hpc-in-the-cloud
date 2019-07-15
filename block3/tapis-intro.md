@@ -11,13 +11,18 @@ Run apps as batch, interactive, or event-driven processes depending on specific 
 #### FIND AND SHARE APPS
 Use the growing catalog of publicly available apps or design custom apps.
 ​
+
+All this is hosted for you, you don't have to stand up your own servers to access any of these features.
+
 ### A Number of Science Gateways and projects leverage Tapis:
 ​
-* Cyverse
-* Design-safe
-* iMicrobe
-* VDJ
-* Ike Wai
+* [Cyverse](https://cyerse.org)
+* [Design-safe](https://www.designsafe-ci.org/#!#research)
+* [iMicrobe](https://www.imicrobe.us)
+* [VDJ](https://vdjserver.org/)
+* [Ike Wai](ikewai.org)
+
+All these gateways leverage Tapis to provide access to data, software and compute resources.
 ​
 ### Tapis is REST and JSON
 ​
@@ -30,6 +35,10 @@ That means you can use CURL to access any of the API functions from a command li
 While CURL is straightforward it is not the most handy.  Tapis has additional tools to make using it simplier, such as a Command Line Interface (CLI) and a Python library.
 ​
 These tools make it easier to utilize and build complex workflows and applications with Tapis using some of the programming and scripting skills you may already have.
+
+### Tapis can be simple
+
+You don't have to do a lot of complex things to use Tapis.  If you just want something to automate taking data from one place and moving it to a compute system, run the computation and then move it back with one command from Tapis - you can do that (We will show you how today).  Maybe others in your lab or department want to do the same thing you can share the application and they can run there data agains the same software and compute system as well.
 ​
 ### Full Tapis Documentation
 ​
