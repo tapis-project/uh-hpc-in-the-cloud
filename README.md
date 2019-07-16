@@ -44,7 +44,7 @@ Presenters here, overview
   * [Preparing our Code for Abaco](./block2/running-image-classifier-in-abaco.md#preparing-our-code-for-abaco)
   * [Creating and Actor](./block2/running-image-classifier-in-abaco.md#creating-an-abaco-actor)
   * [Executing Actor with curl](./block2/running-image-classifier-in-abaco.md#executing-classifier-with-curl)
-  * [Executing Actor with Python](./block2/running-image-classifier-in-abaco.md#executing-classifier-on-abaco-using-a-jupyter-notebook--tapispy)
+  * [Executing Actor with Python on the Abaco Cloud](./block2/Using%20tapispy%20to%20Execute%20Actor%20Containers%20on%20the%20Abaco%20Cloud.ipynb)
 ## Intro to Singularity
 * [Intro to Singularity](./block3/intro-singularity.md)
 
