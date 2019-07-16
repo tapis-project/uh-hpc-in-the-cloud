@@ -120,8 +120,8 @@ You should see email notifications pop up in your inbox as the job changes state
 
 If you made it this far, you have successfully created a new app within a container and have deployed that tool on an HPC system, and now you can run that tool through the cloud from anywhere!  That is quite a lot in one workshop.
 
-At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](tacc-cloud.slack.com)
+At this point, it would be a good idea to connect with other developers that are publishing apps and running workflows through Tapis by joining the Tapis API Slack channel: [tacc-cloud.slack.com](https://bit.ly/2XHYJEk)
+
+[BACK](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/README.md)
 
 
-
-[Back](index.md)
