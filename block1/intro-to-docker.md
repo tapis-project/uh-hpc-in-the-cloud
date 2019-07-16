@@ -216,13 +216,13 @@ show how one would package that into a Docker image for computational portabilit
 
 You can delete or override your previous Dockerfile, because now we will need a different one. Open a file called Dockerfile in the text editor of your choice and work through the following steps.  
 
-##### Step 1. Descend from the official Tensflow image
+##### Task 1. Descend from the official Tensflow image
 For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
 everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`.
 
 Add a line to your Dockerfile to start your image with this image as a base.
 
-##### Step 2. Install app requirements
+##### Task 2. Install app requirements
 For this app, we need to install the `requests` package (a python package dependency) using the Python package manager `pip`. 
 If you aren't familiar with `pip`  just know that the package can be installed by running the following command in the shell
 ```
@@ -230,12 +230,12 @@ pip install requests
 ```
 What Dockerfile instruction would you use to ensure the `requests` package is installed in your image? 
 
-##### Step 3. Add the python script
+##### Task 3. Add the python script
 Our app uses a single python script, `classify_image.py`, located in the repository 
 (https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). Let's add this
 Python script to our image.
 
-##### Step 4. Add the ENTRYPOINT
+##### Task 4. Add the ENTRYPOINT
 
 We will launch our app using `python` which can be accomplished by executing:
 ```
@@ -246,7 +246,7 @@ Set up an entrypoint in your Dockerfile so that running this executable is the d
 *Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
 https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/Dockerfile
 
-##### Step 5. Build the image
+##### Task 5. Build the image
 
 In general, to build an image from a Dockerfile we use the `docker build` command. We use the `-t` flag to tag the 
 image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the 
