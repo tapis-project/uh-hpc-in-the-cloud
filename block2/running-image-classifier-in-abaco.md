@@ -3,7 +3,7 @@
 ### Getting the Image Ready and Registering an Actor
 
 #### Preparing our code for Abaco
-To run our classifier image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. This could be written in anything, including the original Python script; for simplicity, we'll write a short Bash script. 
+To run our classifier docker image with Abaco, we will first need to create a script that will take the message sent to an actor and send it to our classifier script. This could be written in anything, including the original Python script; for simplicity, we'll write a short Bash script. 
 
 Create a new file called `abaco.sh` and add the following content:
 
@@ -15,6 +15,9 @@ echo "Contents of MSG: "$MSG
 
 python "/classify_image.py --image_file=$MSG
 ```
+
+NOTE: In this case, `--image_file` does not refer to a docker image, but a JPEG image. This tag expects a URL from the internet to a JPEG picture file. 
+
 
 Once we register our actor and sent it a message, Abaco will pass the contents of the message in the `$MSG` environment variable. We can use a bash script to capture it, and then run our classifier script with it.
 Because we have added this wrapper script, we will need to update our Dockerfile before we create an Abaco actor.
