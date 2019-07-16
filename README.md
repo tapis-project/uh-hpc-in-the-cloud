@@ -1,14 +1,14 @@
 # Welcome to our Tutorial!
 ## Schedule
 
-*9:00AM - Introduction, Intro to Jupyter, Intro to Docker
-*10:30AM - Break
-*10:45AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
-*Noon - Lunch
-*1PM - Using Abaco, Intro to Singularity
-*2:30PM - Break
-*2:45PM - Tapis Systems, Tapis Apps, Tapis Jobs
-*4:15PM - Workshop Wrap-up
+* 9:00AM - Introduction, Intro to Jupyter, Intro to Docker
+* 10:30AM - Break
+* 10:45AM - Intro to Docker(cont), Intro to Tapis and CLI, Intro to Abaco
+* Noon - Lunch
+* 1PM - Using Abaco, Intro to Singularity
+* 2:30PM - Break
+* 2:45PM - Tapis Systems, Tapis Apps, Tapis Jobs
+* 4:15PM - Workshop Wrap-up
 
 ## Portable, Reproducible High Performance Computing In the Cloud
 To clone this repo to your vm, use the following command:
