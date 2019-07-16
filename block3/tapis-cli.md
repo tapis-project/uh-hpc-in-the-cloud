@@ -104,7 +104,7 @@ The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if 
 ​
 Updating the CLI with Docker
 ----------------
-​
+
 In the future, you can update the Tapis CLI automatically to the latest version by building a new docker container this will pull the latest CLI into the new container.  You can use a different tag than latest if you wish to have multiple versions or you can edit the Dockerfile to target a specific git branch or release as well.
 ​
 ```docker build -t tapis-cli:latest .```
