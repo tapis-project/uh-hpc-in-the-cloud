@@ -146,7 +146,7 @@ website: http://singularity.lbl.gov/
 
 ## 3. Downloading Singularity containers
 
-The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group.
+The easiest way to use a Singularity container is to `pull` an existing container from one of the Container Registries maintained by the Singularity group or from Docker Hub.  There are ways to build a container with a recipe similar to how you create a Dockerfile - see [Singulairty Recipie Documentation](https://sylabs.io/guides/2.6/user-guide/quick_start.html#singularity-recipes)
 
 ## Exercise 2 (~10 mins)
 
