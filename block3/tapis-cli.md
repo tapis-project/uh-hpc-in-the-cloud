@@ -21,9 +21,9 @@ Any questions?  Join the [TACC CLOUD SLACK CHANNEL](https://bit.ly/2XHYJEk) and 
 Command Line Access
 ===================
 
-We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Instructions for installing those tools are below:
+We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Jump to the Authentication section for the workshop.
 
-Installing the Tapis CLI Tools
+Installing the Tapis CLI Tools (Skip for Workshop- this is at home )
 ------------------------------
 
 Tapis has a downloadable set of command line tools that make it easier to work with the API from the shell. Using these scripts is generally easier than hand-crafting cURL commands, but if you prefer that route, consult the [Tapis API Documentation](https://tacc-cloud.readthedocs.io/en/latest/). We include these scripts in the training virtual machines and supplement them with additional support scripts, example files, and documents.
@@ -34,13 +34,13 @@ To use access the CLI for this tutorial you can open a Terminal  in Jupyter whic
 
 ```ssh ubunut@jetstreamvm_ip_address```
 
-Install the CLI tools
+Install the CLI tools (Skip for Workshop- this is at home )
 ----------------------------------
 
 The CLI tools and instructions for installation can be found in the [CLI repository](https://github.com/TACC-Cloud/agave-cli)
 
 
-Install the CLI tools with Docker
+Install the CLI tools with Docker (Skip for Workshop- this is at home )
 ----------------------------------
 We can create the Dockerfile for the Tapis CLI 
 
@@ -88,7 +88,7 @@ The CLI tools are installed in /agave-cli/bin within the Docker conatiner so if 
 >root@5c8c91edb474:/agave/cli# ls
 ```
 
-Updating the CLI with Docker
+Updating the CLI with Docker (Skip for Workshop- this is at home )
 ----------------
 
 In the future, you can update the Tapis CLI automatically to the latest version by building a new docker container this will pull the latest CLI into the new container.  You can use a different tag than latest if you wish to have multiple versions or you can edit the Dockerfile to target a specific git branch or release as well.
