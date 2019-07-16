@@ -262,9 +262,6 @@ To view the permissions on the app for different users
 
  Now that we have our very first app ready to use, we are ready to run it on Stampede2 using Tapis(Aloe) Jobs service. 
 
-[NEXT-> JOBS](https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block4/jobs.md)
-
-
 ## More Resources
 
 Building Tapis applications can be very rewarding way to share your code with your colleagues and the world. This is a very simple example. If you are interested to learn more, please check out the [App Management Tutorial](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/apps/introduction.html).
