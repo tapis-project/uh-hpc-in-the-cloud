@@ -140,7 +140,7 @@ python                         latest              a5b7afcfdcc8        3 hours a
 We can build images from a text file called a Dockerfile. You can think of a Dockerfile as a recipe for creating images.
 The instructions within a dockerfile either add files/folders to the image, add metadata to the image, or both.
 
-Create a new file and save is as Dockerfile:
+Create a new file and save it as `Dockerfile`:
 
 ```
 touch Dockerfile
