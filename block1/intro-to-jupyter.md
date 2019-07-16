@@ -26,4 +26,4 @@ To open a terminal for writing CLI commands, click 'New' in the upper right corn
 
 
 ### Cloning the Repository
-To clone this repo to your VM, use the following command: git clone https://github.com/tapis-project/uh-hpc-in-the-cloud.git
+To clone this repo to your VM, use the following command: `git clone https://github.com/tapis-project/uh-hpc-in-the-cloud.git`
