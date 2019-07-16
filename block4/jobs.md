@@ -71,7 +71,7 @@ jobs-list
 Job status allows you to see the current state of the job. You can also set up email or webhook notification, when the job state changes
 
 ```
-job-status <jobId>
+jobs-status <jobId>
 
 ```
 Details about different job states are given here [JOB STATES](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/jobs/aloe-job-changes.html#job-states)
