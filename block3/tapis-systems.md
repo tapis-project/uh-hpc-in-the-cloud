@@ -33,16 +33,19 @@ Storage systems tell Tapis where data resides.  You can store files for running 
 
 * **id** -This needs to be a unqiue identifier amongst all systems in Tapis - so using your username helps ensure this.
 * **name** - This can be whatever you like, but should be descriptive for you.
-* **status** - This is used when querying systems and can give other users an idea if the system is UP or DOWN.
+* **status** - This is used when querying systems and can give other users an idea if the system is UP or DOWN- only sytems that are UP can be accessed.
+* **type** - A system can be STORAGE or EXECUTION.
 * **site** - A url typically with information about the system.
 * **host** -  This is the ip or domain of the server we need to connect to
 * **port** -  This is the port we need to use when connecting, this is usally tied to the proctocal (SFTP is usually port 22)
 * **protocol** - This is the communication protocol most systems use SFTP but others are supported.
-* **rootDir** - This is the lowest directory any Tapis user accessing this system can navigate
-* **homeDir** - This is the directory that a Tapis user will access by default
+* **rootDir** - This is the lowest directory any Tapis user accessing this system can navigate.
+* **homeDir** - This is the directory that a Tapis user will access by default.
 * **auth** - The Authenication type to use when accessing the system - in this tutorial we are using a PASSWORD Auth but SSH-KEYS is usually recommended.
+* **public** - Is this a shared resource available to all users - only Administrators can set this to TRUE.
+* **default** - TRUE or FALSE if this is the default system for Tapis to use when not explicitly passed a system.
 
-More details on the possible parameters for storage systems can be found in the [Tapis documentation](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/systems-storage.html).
+More details on the possible parameters for storage systems can be found in the [Tapis Storage System documentation](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/systems-storage.html).
 ### Hands-on
 
 As a hands on exercise, using the Tapis CLI, register a data storage system using PASSWORD authentication with the above template for the TACC Corral Cloud store. Don't forget to replace *UPDATEUSERNAME* and *UPDATE PASSWORD*.  Call the JSON file "corral_cloud.json"
@@ -110,7 +113,6 @@ Execution systems in Tapis are very similar to storage systems.  They just have 
       "maxNodes": 128,
       "maxMemoryPerNode": "2GB",
       "maxProcessorsPerNode": 128,
-      "customDirectives":"-A UPDATEALLOCATION",
       "maxRequestedTime": "24:00:00",
       "customDirectives":"-A UPDATEPROJECT -r UPDATERESERVATION",
       "default": true
@@ -127,6 +129,9 @@ We covered what some of these keywords are in the storage systems section.  Belo
 * **scheduler** - For HPC or CONDOR systems, Agave is "scheduler aware" and can use most popular schedulers to launch jobs on the system.  This field can be LSF, LOADLEVELER, PBS, SGE, CONDOR, FORK, COBALT, TORQUE, MOAB, SLURM, UNKNOWN. The type of batch scheduler available on the system.
 * **environment** - List of key-value pairs that will be added to the Linux shell environment prior to execution of any command.
 * **scratchDir** - Whenever Agave runs a job, it uses a temporary directory to cache any app assets or job data it needs to run the job.  This job directory will exist under the "scratchDir" that you set.  The path in this field will be resolved relative to the rootDir value in the storage config if it begins with a "/", and relative to the system homeDir otherwise.
+* **workDir** - Path to use for a job working directory. This value will be used if no scratchDir is given. The path will be resolved relative to the rootDir value in the storage config if it begins with a "/", and relative to the system homeDir otherwise.
+* **queue** - An array of batch queue definitions providing descriptive and quota information about the queues you want to expose on your system. If not specified, no other system queues will be available to jobs submitted using this system.
+* **startupScript** - Path to a script that will be run prior to execution of any command on this system. The path will be a standard path on the remote system. A limited set of system macros are supported in this field. They are rootDir, homeDir, systemId, workDir, and homeDir. The standard set of runtime job attributes are also supported. Between the two set of macros, you should be able to construct distinct paths per job, user, and app. Any environment variables defined in the system description will be added after this script is sourced. If this script fails, output will be logged to the .agave.log file in your job directory. Job submission will still continue regardless of the exit code of the script.
 
 Complete reference information is located here:
 https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/introduction.html
