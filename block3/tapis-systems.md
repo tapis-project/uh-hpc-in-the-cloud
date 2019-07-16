@@ -145,11 +145,3 @@ systems-list
 ```
 
 If you want to view just the storage systems you can use -S. For execution systems use -E.
-
-We can also set a default storage system that Tapis can default to:
-
-```
-systems-setdefault USERNAME.tacc.corral.storage
-```
-
-Default systems are the systems that are used when the user does not specify a system to use when performing a remote action in Tapis. For example, specifying an archivePath in a job request, but no archiveSystem, or specifying a deploymentPath in an app description, but no deploymentSystem. In these situations, Tapis will use the user’s default storage system.
