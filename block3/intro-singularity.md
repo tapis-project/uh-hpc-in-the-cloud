@@ -80,6 +80,8 @@ Type in the following:
 
 ## 2.4 Check Installation (Jump to Here for the Workshop)
 
+ACK! UNFORTUNATELY SINGULARITY HUB IS DOWN FOR MAINTENANCE - NORMALLY SHUB PULLS WORK - WE WILL JUST RUN THE DOCKER PULLS TODAY - YOU CAN COME BACK LATER AND TRY SHUB EXAMPLES WHEN THE HUB IS BACK UP.
+
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
 ```
@@ -328,8 +330,8 @@ By default, Singularity uses a temporary cache to hold Docker tarballs:
 You can change these by specifying the location of the cache and temporary directory on your localhost:
 
 ```
-  $ sudo mkdir tmp
-  $ sudo mkdir scratch
+  $ mkdir tmp
+  $ mkdir scratch
 
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
