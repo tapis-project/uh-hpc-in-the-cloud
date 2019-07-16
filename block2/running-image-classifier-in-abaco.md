@@ -13,7 +13,7 @@ Create a new file called `abaco.sh` and add the following content:
 # print the special MSG variable:
 echo "Contents of MSG: "$MSG
 
-python "/classify_image.py --image_file=$MSG
+python /app/classify_image.py --image_file=$MSG
 ```
 
 NOTE: In this case, `--image_file` does not refer to a docker image, but a JPEG image. This tag expects a URL from the internet to a JPEG picture file. 
