@@ -218,7 +218,7 @@ You can delete or override your previous Dockerfile, because now we will need a 
 
 ##### Task 1. Descend from the official Tensflow image
 For this app, we will need Tensorflow. Fortunately, there is an image maintained by the Tensorflow project that has 
-everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`.
+everything we need! The image is `tensorflow/tensorflow:1.5.0-py3`
 
 Add a line to your Dockerfile to start your image with this image as a base.
 
