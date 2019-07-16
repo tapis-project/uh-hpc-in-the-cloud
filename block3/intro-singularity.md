@@ -333,8 +333,8 @@ By default, Singularity uses a temporary cache to hold Docker tarballs:
 You can change these by specifying the location of the cache and temporary directory on your localhost:
 
 ```
-  $ sudo mkdir tmp
-  $ sudo mkdir scratch
+  $ mkdir tmp
+  $ mkdir scratch
 
   $ SINGULARITY_TMPDIR=$PWD/scratch SINGULARITY_CACHEDIR=$PWD/tmp singularity --debug pull --name ubuntu-tmpdir.simg docker://ubuntu
 ```
