@@ -41,6 +41,75 @@ package-name-version is a folder that you create on your Jetstream VM and transf
 
 
 ### Application metadata
+An example Tapis App JSON definition:
+```
+{
+  "name": "UPDATEUSERNAME.app.imageclassify",
+  "version": "1.0",
+  "label": "Image Classifier",
+  "shortDescription": "Classify an image using a small ImageNet model",
+  "longDescription": "",
+  "tags": [
+    "tensorflow",
+    "ImageNet"
+  ],
+  "deploymentSystem": "UPDATEUSERNAME.tacc.corral.storage",
+  "deploymentPath": "/home/UPDATEUSERNAME/applications/classifyApp-1.0/",
+  "templatePath": "wrapper.sh",
+  "testPath": "test/test.sh",
+  "executionSystem": "UPDATEUSERNAME.stampede2.execution",
+  "executionType": "HPC",
+  "helpURI": "https://github.com/tapis-project/hpc-in-the-cloud/",
+  "parallelism": "SERIAL",
+  "modules": ["load tacc-singularity/2.6.0"],
+  "inputs": [],
+  "parameters": [{
+    "id": "imagefile",
+    "details": {
+      "label": "Image to classify",
+      "description": "",
+      "argument": "--image_file ",
+      "showArgument": true
+    },
+    "semantics": {
+      "minCardinality": 1,
+      "ontology": [
+        "http://edamontology.org/format_3547"
+      ],
+      "maxCardinality": 1
+    },
+    "value": {
+      "default": "https://texassports.com/images/2015/10/16/bevo_1000.jpg",
+      "order": 0,
+      "required": true,
+      "type": "string",
+      "visible": true
+    }
+  },
+    {
+    "id": "predictions",
+    "details": {
+      "label": "Number of predictions to return",
+      "argument": "--num_top_predictions ",
+      "showArgument": true
+    },
+    "semantics": {
+      "maxCardinality": 1,
+      "ontology": [],
+      "minCardinality": 1
+    },
+    "value": {
+      "visible": true,
+      "required": true,
+      "type": "number",
+      "default": 5
+    }
+  }],
+  "outputs": [],
+  "checkpointable": false
+}
+```
+
 * **name** - Apps are given an ID by combining the "name" and "version". That combination must be unique across the entire Tapis(Agave) tenant, so unless you are an admin creating public system, you should probably put your username somewhere in there, and it's often useful to have the system name somehow referenced there too. You shouldn't use spaces in the name.
 * **version** - This should be the version of the software package that you are wrapping.  If you end up updating your app description later on, Tapis(Agave) will keep track of the app revision separately, so there is no need to reflect that here.
 * **deploymentSystem** - The data storage system where you keep the app assets, such as the wrapper script, test script, etc.  App assets are not stored on the execution system where they run.  For provenance and reproducibility, Tapis(Agave) requires that you keep them on a cloud storage system.
