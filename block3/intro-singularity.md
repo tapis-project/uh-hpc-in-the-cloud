@@ -28,17 +28,15 @@ Singularity uses a 'flow' whereby you can (1) create and modify images on your d
 
 ## 2. Singularity Installation
 
+We don't have to install singularity for this workshop as it is already installed on the VM but the instructions below are useful outside of this workshop.
+
 Singularity homepage: [http://sylabs.io](http://sylabs.io/)
 
 While Singularity is more likely to be used on a remote system, e.g. HPC or cloud, you may want to develop your own containers first on a local machine or dev system.
 
-## Exercise 1 (10-15 mins)
-
 ### 2.1 Setting up your Laptop
 
 To Install Singularity on your laptop or desktop PC follow the instructions from Singularity: [Install Singularity Windows or Mac ](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-windows-or-mac) or [Install Singularity on Linux](https://sylabs.io/guides/3.2/user-guide/installation.html#install-on-linux)
-
-
 
 ### 2.2 HPC
 
@@ -58,7 +56,6 @@ If Singularity is installed:
   $ module load singularity
     
 ```
-
 
 ### 2.3 XSEDE Jetstream Cloud
 We have already installed Singularity for you on your Jestream VM but in the future if you need to you can do the following:
@@ -81,7 +78,7 @@ Type in the following:
 ```
 
 
-### 2.4 Check Installation
+### 2.4 Check Installation (Jump to Here for the Workshop)
 
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
