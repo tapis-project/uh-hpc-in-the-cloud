@@ -6,6 +6,19 @@ The Agave jobs service is rearchitectured, to a new code-named Aloe, which provi
 
 
 ### Jobs Parameters 
+An example Job JSON defintion:
+```
+{
+  "name":"UPDATEUSERNAME.app.imageclassify",
+  "appId":"UPDATEAPPID",
+  "archive":true,
+  "archiveSystem":"UPDATESTORAGESYSTEM",
+  "memoryPerNode":"1",
+  "parameters": { 
+    "imagefile": "https://texassports.com/images/2015/10/16/bevo_1000.jpg"
+    } 
+}
+```
 * **appId**	- The unique ID (name + version) of the application run by this job. This must be a valid application that the user has permission to run.
 * **name**	-  The user selected name for the job.
 * **archive**	-	Whether the job output should be archived. When true, all new file created during job execution will be moved to the archivePath.
