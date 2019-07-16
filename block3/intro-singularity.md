@@ -83,6 +83,8 @@ Type in the following:
 
 ### 2.4 Check Installation
 
+ACK! UNFORTUNATELY SINGULARITY HUB IS DOWN FOR MAINTENANCE - NORMALLY SHUB PULLS WORK - WE WILL JUST RUN THE DOCKER PULLS TODAY - YOU CAN COME BACK LATER AND TRY SHUB EXAMPLES WHEN THE HUB IS BACK UP.
+
 Singularity should now be installed on your laptop or VM, or loaded on the HPC, you can check the installation with:
 
 ```
