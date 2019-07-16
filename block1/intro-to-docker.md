@@ -243,6 +243,9 @@ We will launch our app using `python` which can be accomplished by executing:
 ```
 python /path/to/classify_image.py
 ```
+
+You will need to replace `/path/to/` to the location of where your classify_image.py file is. 
+
 Set up an entrypoint in your Dockerfile so that running this executable is the default behavior.
 
 *Note:* A complete Dockerfile for the classifier image is available in the workshop repository:
@@ -282,6 +285,8 @@ To run a container and attach to it in one command, use the `-it` flags. Here we
 ```
 docker run -it ubuntu bash
 ```
+
+NOTE: You will need to type the `exit` command to continue from here. 
 
 #### Running a Container in Daemon mode ####
 We can also run a container in the background. We do so using the `-d` flag:
