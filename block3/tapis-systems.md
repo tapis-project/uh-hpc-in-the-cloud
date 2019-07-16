@@ -31,6 +31,18 @@ Storage systems tell Tapis where data resides.  You can store files for running 
 }
 ```
 
+* **id** -This needs to be a unqiue identifier amongst all systems in Tapis - so using your username helps ensure this.
+* **name** - This can be whatever you like, but should be descriptive for you.
+* **status** - This is used when querying systems and can give other users an idea if the system is UP or DOWN.
+* **site** - A url typically with information about the system.
+* **host** -  This is the ip or domain of the server we need to connect to
+* **port** -  This is the port we need to use when connecting, this is usally tied to the proctocal (SFTP is usually port 22)
+* **protocol** - This is the communication protocol most systems use SFTP but others are supported.
+* **rootDir** - This is the lowest directory any Tapis user accessing this system can navigate
+* **homeDir** - This is the directory that a Tapis user will access by default
+* **auth** - The Authenication type to use when accessing the system - in this tutorial we are using a PASSWORD Auth but SSH-KEYS is usually recommended.
+
+More details on the possible parameters for storage systems can be found in the [Tapis documentation](https://tacc-cloud.readthedocs.io/projects/agave/en/latest/agave/guides/systems/systems-storage.html).
 ### Hands-on
 
 As a hands on exercise, using the Tapis CLI, register a data storage system using PASSWORD authentication with the above template for the TACC Corral Cloud store. Don't forget to replace *UPDATEUSERNAME* and *UPDATE PASSWORD*.  Call the JSON file "corral_cloud.json"
