@@ -26,7 +26,7 @@ for 4 hours. As we saw in the previous section, you can refresh your access toke
 > auth-tokens-refresh -v
 ```
 
-We recommend saving your token into a variable for ease of use:
+We recommend saving your access token into a variable for ease of use:
 
 ```bash
 > export TOKEN=<the_token>
