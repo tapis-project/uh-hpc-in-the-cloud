@@ -21,7 +21,11 @@ Any questions?  Join the [TACC CLOUD SLACK CHANNEL](https://bit.ly/2XHYJEk) and 
 Command Line Access
 ===================
 
-We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  Jump to the [Authentication](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/block3/tapis-cli.md#authentication) section for the workshop.
+We won't install it in this workshop (since it is already installed on the VM), but everything we do today can also be done from the standard shell using the Tapis CLI tools.  
+
+Open a terminal in your Jupyter instance and that is what we will use to run the CLI commands.
+
+Jump to the [Authentication](https://github.com/tapis-project/uh-hpc-in-the-cloud/blob/master/block3/tapis-cli.md#authentication) section for the workshop.
 
 Installing the Tapis CLI Tools (Skip for Workshop- this is at home )
 ------------------------------
