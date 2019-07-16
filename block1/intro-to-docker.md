@@ -146,8 +146,9 @@ Create a new file and save is as Dockerfile:
 touch Dockerfile
 ```
 
+
 #### The FROM instruction
-We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
+Now that you created your own Dockerfile, you can add all the parts you need for it to build and run correctly. First we will start with the FROM instruction. We can use the `FROM` instruction to start our new image from a known image. This should be the first line of our Dockerfile. We will start our image from an official Ubuntu 16.04 image:
 
 
 > FROM ubuntu:16.04 
