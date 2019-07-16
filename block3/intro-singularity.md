@@ -442,8 +442,15 @@ When you use the `--sandbox` the container is written into a directory structure
 When Singularity creates the new file system inside a container it ignores directories that are not part of the standard kernel, e.g. `/scratch`, `/xdisk`, `/global`, etc. These paths can be added back into the container by binding them when the container is run.
 
 ```
-	$ singularity shell --bind /xdisk ubuntu14.simg
+	$ sudo mkdir /xdisk
+	$ sudo touch /xdisk/atest.txt
+	$ singularity shell --bind /xdisk ubuntu-16.04.simg
+	Singularity: Invoking an interactive shell within container...
+	$Singularity ubuntu-16.04.simg:~> ls /xdisk
+	atest.txt
+	
 ```
+The above commands - you create a "xdisk" folder at the root space and then we bind it to the container so it is available inside the container and start the container and go inside the container and then list the files from inside the container in "xdisk" - note that the file from the host we made "atest.txt" is in the container.
 
 The system administrator can also define what is added to a container. This is important on campus HPC systems that often have a `/scratch` or `/xdisk` directory structure. By editing the `/etc/singularity/singularity.conf` a new path can be added to the system containers.
 
