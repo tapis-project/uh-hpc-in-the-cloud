@@ -199,7 +199,8 @@ For this example, we will use the `ls` program as our entrypoint.
 
 Note: additional arguments can still be passed to the entrypoint when launching a container.
 
-Now you can build and run your docker image:
+Now you can build and run your docker image. To name your docker image, we will need to use the `-t` flag, followed by the name of the image. Note that the `.` at the end of the command is to tell docker where your Dockerfile is located. In this situation, it is located in the current directory, which is `.` in linux systems. Try the command below, replacing "YOUR-IMAGE-HERE" with the name you want to call your image. 
+
 ```
 docker build -t YOUR-IMAGE-NAME .
 docker run YOUR-IMAGE-NAME
