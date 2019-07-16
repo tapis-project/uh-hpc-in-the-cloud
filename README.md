@@ -1,4 +1,5 @@
-# Welcome to our Tutorial!
+# Portable, Reproducible High Performance Computing In the Cloud
+
 ## Schedule
 
 * 9:00AM - Introduction, Intro to Jupyter, Intro to Docker
@@ -10,12 +11,12 @@
 * 2:45PM - Tapis Systems, Tapis Apps, Tapis Jobs
 * 4:15PM - Workshop Wrap-up
 
-## Portable, Reproducible High Performance Computing In the Cloud
-To clone this repo to your vm, use the following command:
-`git clone https://github.com/tapis-project/uh-hpc-in-the-cloud.git`
-
 ## Workshop Introduction
-Presenters here, overview
+Presenters: 
+* Joe Stubbs (TACC)
+* Julia Looney (TACC)
+* Sean Cleveland (UH)
+* Jennifer Geis (UH)
 
 ## Intro to Jupyter
 * [Introduction to Jupyter](./block1/intro-to-jupyter.md)
