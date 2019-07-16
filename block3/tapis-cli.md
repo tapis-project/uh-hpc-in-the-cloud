@@ -1,6 +1,7 @@
 
 Tutorial: Getting Started with Tapis CLI
 ===============================================
+
 The following instructions will guide you through setting up Tapis CLI.  As an aside, everything we do today can also be accomplished from a command line interface or by directly calling API endpoints.  
 ​
 The Tapis CLI commands all respond with help for -h and return back information on the parameters that can be passed.  
@@ -42,6 +43,7 @@ The CLI tools and instructions for installation can be found in the [CLI reposit
 ​
 Install the CLI tools with Docker
 ----------------------------------
+
 We can create the Dockerfile for the Tapis CLI 
 ​
 ```
@@ -98,7 +100,7 @@ In the future, you can update the Tapis CLI automatically to the latest version 
 ​
 Authentication
 ----------------
-​
+
 Tapis has robust Authentication/Authorization pathways - we could easliy spend an hour or more discussing them, but will keep our focus simple for this tutorial.
 ​
 The Tapis API uses OAuth 2 for managing authentication and authorization. 
@@ -112,7 +114,7 @@ We will see that we have to initialize some things before we can use Tapis.
 ​
 Initialize the CLI
 ------------------
-​
+
 The first time you install the CLI tools on a computer, you need to initialize it.
 You can initialize the TACC tenant by runnning:
 ​
@@ -147,6 +149,7 @@ The 'auth-session-init' command creates a Tapis client and then request an API t
 ​
 Creating a Client 
 ----------------
+
 The Tapis API uses OAuth 2 for managing authentication and authorization. Before you work with Tapis, you must create an OAuth client application and record the API keys that are returned. This is a one-time action per machine that you use the CLI and the 'auth-session-init' can take care of this.  In the event you need to create your own client you can pass additional parameters to the 'auth-session-init' command.  For instance if we want to make a new client.
 ​
 ```
