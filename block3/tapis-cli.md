@@ -1,17 +1,3 @@
-Jupyter Notebook
-tapis-cli
-Last Checkpoint: a few seconds ago
-(autosaved)
-Current Kernel Logo
-Python 3 
-File
-Edit
-View
-Insert
-Cell
-Kernel
-Widgets
-Help
 
 Tutorial: Getting Started with Tapis CLI
 ===============================================
