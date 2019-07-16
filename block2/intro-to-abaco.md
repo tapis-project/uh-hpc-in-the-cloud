@@ -29,7 +29,7 @@ for 4 hours. As we saw in the previous section, you can refresh your access toke
 We recommend saving your access token into a variable for ease of use:
 
 ```bash
-> export TOKEN=<the_token>
+> export TOKEN=<your_access_token>
 > curl -H "Authorization: Bearer $TOKEN" https://api.tacc.utexas.edu/actors/v2
 ```
 
@@ -37,16 +37,16 @@ The API should return a JSON object and a success message if all went well.
 
 ### Registering an Actor
 
-As Abaco is an HTTP API, to work with the service, any HTTP client can be used.
-In this workshop we will focus on two clients: `curl`, which can be run from the command line in most Unix like
+As Abaco is an HTTP API. To work with the service, any HTTP client can be used.
+In this workshop we will focus on two clients: `curl`, which can be run from the command line in most Unix-like
 environments; and the `tapispy` Python library.
 
 #### Initial Registration
 
-Once you have a Docker image build and pushed to the Docker Hub, you can register
+Once you have a Docker image built and pushed to the Docker Hub, you can register
 an actor from it by making a POST request to the Abaco API.
 
-The only required POST parameter is the image to use, but there are several other optional arguments.
+The only required POST parameter is the docker image to use, but there are several other optional arguments.
 
 #### Complete List of Registration Parameters
 The following parameters can be passed when registering a new actor.
