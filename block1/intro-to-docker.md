@@ -273,6 +273,8 @@ we could execute:
 docker run <image> --image_file=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg
 ```  
 
+NOTE: In this case, `--image_file` does not have to do with a docker image, but instead refers to a JPEG picture from the internet. This tag expects a full URL to a picture file. 
+
 Let's look at a few more things we can do with containers.
 
 #### Running and Attaching to a Container
