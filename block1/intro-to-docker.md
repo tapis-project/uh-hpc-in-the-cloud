@@ -232,8 +232,10 @@ What Dockerfile instruction would you use to ensure the `requests` package is in
 
 ##### Task 3. Add the python script
 Our app uses a single python script, `classify_image.py`, located in the repository 
-(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). Let's add this
-Python script to our image.
+(https://github.com/tapis-project/hpc-in-the-cloud/blob/master/block1/classifier/classify_image.py). You can either copy/paste the code from the github repo into a file called `classify_image.py` or clone this repo and copy this file over to your working directory. 
+
+
+Now let's add this Python script to our image.
 
 ##### Task 4. Add the ENTRYPOINT
 
