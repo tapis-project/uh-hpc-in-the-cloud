@@ -92,7 +92,7 @@ Take note of the actor ID that is returned, since you will need it to send the a
 To execute our Actor with our image classifier, we will need to send our actor a raw string message:
 
 ```
-$ curl -k -H "Authorization: Bearer $TOKEN" -d "message=https://path/to/an/image.jpg" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
+$ curl -k -H "Authorization: Bearer $TOKEN" -d "message=https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/12231410/Labrador-Retriever-On-White-01.jpg" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
 To see the results of the execution, we can check the logs:
