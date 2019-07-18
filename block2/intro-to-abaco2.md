@@ -18,24 +18,24 @@ https://abaco.readthedocs.io/en/latest/getting-started/index.html#account-creati
 
 For this workshop, we have installed TACC training accounts on your VM.
 
-#### Checking Access to the TACC APIs
+#### Overview of Abaco Access
 To use any TACC API, including Abaco, you will need an access token. Once generated, tokens are valid
-for 4 hours. As we saw in the previous section, you can refresh your access token using the CLI:
+for 4 hours. You can refresh your access token using the CLI:
 
 ```bash
 > auth-tokens-refresh -v
 ```
 
-We recommend saving your access token into a variable for ease of use:
+This access token can be saved to a variable for convenience.  
 
 ```bash
 > export TOKEN=<your_access_token>
 > curl -H "Authorization: Bearer $TOKEN" https://api.tacc.utexas.edu/actors/v2
 ```
 
-The API should return a JSON object and a success message if all went well.
+The API will return a JSON object and a success message if all went well.
 
-### Registering an Actor
+### Actor Registration
 
 As Abaco is an HTTP API. To work with the service, any HTTP client can be used.
 In this workshop we will focus on two clients: `curl`, which can be run from the command line in most Unix-like
@@ -43,10 +43,10 @@ environments; and the `tapispy` Python library.
 
 #### Initial Registration
 
-Once you have a Docker image built and pushed to the Docker Hub, you can register
-an actor from it by making a POST request to the Abaco API.
+Once a Docker image is built and pushed to the Docker Hub, it can be registered to
+an actor via a POST request to the Abaco API.
 
-The only required POST parameter is the docker image to use, but there are several other optional arguments.
+The only required POST parameter required is the docker image to use, but there are several other optional arguments.
 
 #### Complete List of Registration Parameters
 The following parameters can be passed when registering a new actor.
@@ -75,7 +75,7 @@ $ curl -k -H "Authorization: Bearer $TOKEN" \
 https://api.tacc.cloud/actors/v2
 ```
 
-To register an actor using the `tapispy` library, we use the `actors.add()` method and pass the same arguments through
+To register an actor using the `tapispy` library, the `actors.add()` method can be used to pass the same arguments through
 the `body` parameter. For example,
 
 ```
@@ -87,7 +87,7 @@ the `body` parameter. For example,
 
 ### Executing an Actor
 
-To execute a Docker container associated with an actor, we send the actor a message by making a POST request to the
+To execute a Docker container associated with an actor, the actor is sent a message by making a POST request to the
 actor's inbox URI which is of the form:
 ```
 https://api.tacc.cloud/actors/v2/<actor_id>/messages
@@ -104,7 +104,7 @@ Here is an example using curl:
 $ curl -k -H "Authorization: Bearer $TOKEN" -d "message=some test message" https://api.tacc.cloud/actors/v2/$ACTOR_ID/messages
 ```
 
-When this request is successful, the abaco will put a single message on the actor's message queue which will ultimately result in one container execution with the `$MSG` environment variable having the value `some test message`.
+When this request is successful, abaco will put a single message on the actor's message queue which will ultimately result in one container execution with the `$MSG` environment variable having the value `some test message`.
 
 ```
 =======
