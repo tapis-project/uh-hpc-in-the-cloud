@@ -1,1 +1,5 @@
 remote_theme: pawamoy/jekyll-readthedocs
+
+header_pages:
+  - block1/intro-to-docker.md.md
+  - block1/intro-to-jupyter.md
